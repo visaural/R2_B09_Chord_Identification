@@ -1,0 +1,90 @@
+NN INPUTS
+
+First Layer     N0  N1  N2  N3  N4  N5  N6  N7  N8  N9  N10 N11 (#notes)
+
+C               1   0   0   0   0   0   0   0   0   0   0   0   
+C#              0   1   0   0   0   0   0   0   0   0   0   0   
+D               0   0   1   0   0   0   0   0   0   0   0   0   
+D#              0   0   0   1   0   0   0   0   0   0   0   0   
+E               0   0   0   0   1   0   0   0   0   0   0   0   
+F               0   0   0   0   0   1   0   0   0   0   0   0      
+F#              0   0   0   0   0   0   1   0   0   0   0   0   
+G               0   0   0   0   0   0   0   1   0   0   0   0   
+G#              0   0   0   0   0   0   0   0   1   0   0   0   
+A               0   0   0   0   0   0   0   0   0   1   0   0   
+A#              0   0   0   0   0   0   0   0   0   0   1   0      
+B               0   0   0   0   0   0   0   0   0   0   0   1
+
+Hidden layer 1 (): unpack notes
+Hidden layer 2 (): determine chord types
+Hidden layer 3 (n=14): "initial outputs"
+
+NN OUTPUTS
+
+Output Layer
+NOTE    C    C#   D    D#   E    F    F#   G    G#   A    A#   B    (null)
+
+note    .08  .16  .24  .32  .40  .48  .56  .64  .72  .80  .88  .96  .00
+maj
+min
+aug
+dim
+sus2
+sus4
+b5
+6
+7
+9
+11
+addM7
+add9
+
+
+
+
+
+CHORD NOTES PROCESSED 
+should be UNIQUE NOTES
+i. e. C E G B E is a Cmaj7 and has 4 unique notes
+
+1   C
+2   C#
+3   D
+4   D#
+5   E
+6   F
+7   F#
+8   G
+9   G#
+10  A
+11  A#
+12  B
+
+
+1  2  3  4  5  6  7  8  9  10  11  12
+13 14 15
+
+y = x-12
+
+
+Cmaj ->         1 5 8
+Cmaj7 ->        1 5 8 12
+Cmaj9 ->        1 5 8 12 15
+Cmaj11 ->       1 5 8 12 15 18
+
+Cmin ->         1 4 8
+Cmin7 ->        1 4 8 11
+Cmin9 ->        1 4 8 11 15
+Cmin11 ->        1 4 8 11 15 18
+
+C7 ->           1 5 8 11
+C9 ->           1 5 8 11 15
+C11 ->          1 5 8 11 15 18
+
+Caug            1 5 9
+Caug7           1 5 9 11
+
+Cdim            1 4 7
+Cdim7           1 4 7 10
+Co7
+
