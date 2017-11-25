@@ -1,0 +1,43 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{inconsolata}
+\usepackage{graphicx}
+
+\begin{document}
+	\title{Development of an Algorithm for Real-Time Identification of Musical Chords in MIDI Signals}
+	
+	\author{Navarro, Joachim Alfonso A.}
+	
+	\maketitle
+	
+	\begin{center}
+		\textbf{WARNING: This paper is for evaluation of text only and is therefore invalid for publishing or submission to an authority. No references are included due to formatting issues.}
+	\end{center}
+	
+	\section{Introduction}
+	Chords are collections of two or more musical notes, often played together, and are arranged in such a way that they follow the so-called “rules of harmony” (Leino, Brattico, Tervaniemi, \& Vurst, 2007). These rules are recognized by humans as a response in the brain that is triggered when they are violated (Leino et al., 2007). Because of this, chords are fundamental to the harmonic integrity of any musical work.\\
+	
+	A musical chord is commonly identified by two parameters: the root note and the chord type. The root note serves as a reference point for the other notes which are played in the chord. These other notes are determined by the chord type. For example, a C major chord has “C” as the root note, and “major” as the chord type. A major chord type includes the 1st (root), major 3rd, and 5th harmonics of the typical Western major scale. Thus, the notes of a C major chord are C (1st), E (major 3rd), and G (5th). \\
+	
+	\section{Statement of the Problem}
+	Humphrey, Bello, and Cho (n.d.) state that “the general music learning public places a high demand on chord-based representations of popular music” (par. 1). However, complete and accurate determination of these chords by hearing requires the use of both absolute and relative pitch, because chords utilize both an absolute reference point (root note) and a relative configuration of harmonies (chord type).\\
+	
+	Absolute pitch is expressed when one can identify a musical note by hearing it, while relative pitch is shown when one can recognize the distances between musical notes (Zatorre, Perry, Beckett, Westbury, \& Evans, 1998). While “most trained musicians” (Zatorre et al., 1998) exhibit a mastery of the latter, few of them have absolute pitch. \\
+	
+	Absolute pitch is expressed in a low percentage of the human population and acquired through a combination of favorable genes and music training at a young age (Baharloo, Service, Risch, Gitschier, \& Freimer, 2000). Therefore, complete chord identification is a rare skill found in those with mastery of both absolute and relative pitch, even though chords play an important role in any musical work. An algorithm that automatically identifies chords from individual notes would be a first step towards addressing this problem.\\
+	
+	\section{Objectives of the study}
+	This study aims to develop a low-latency algorithm that correctly identifies one-root musical chords formed by playing more than two notes on a MIDI input device. Specifically, the program must identify simple \& extended chords in real-time and respond quickly enough to be used in live performance (Stark \& Plumbley, 2009). The program must be implemented in programming languages that have MIDI input-output libraries such as pyrtmidi (Kidd, 2017) for Python and rtmidi (thestk, 2017) for C++ to facilitate ease of coding.\\
+	
+	\section{Significance of the study}
+	Such an algorithm would be central to the development of a standalone program that comprehensively identifies chords from MIDI signal inputs, of which there are none currently available. While chord identification algorithms exist, they operate on an audio input (Fujishima, 1999; Stark \& Plumbley, 2009). For those algorithms to work optimally, the appropriate audio equipment, which may not be accessible, is needed. On the other hand, many common electronic keyboards have MIDI functionality (Brown, 2016), and can thus output MIDI note signals to an outboard device such as a computer that can then run the MIDI-based chord recognition algorithm. \\
+	
+	It would be useful in the field of music education, where a low proportion of music students have absolute pitch (Gregersen, Kowalsky, Kohn, \& Marvin, 1999) despite their demand for chordal representations of music (Humphrey, Bello, \& Cho, n.d., par. 1). It would allow said students to learn to identify chords more quickly and accurately, and help them develop their senses of relative and absolute pitch. It is also useful in situations when chords being played need to be verified for correctness, such as when one is learning or composing a musical piece. \\
+	
+	
+	
+	
+	
+\end{document}

@@ -1,0 +1,21 @@
+Development of algorithm
+
+    
+    1.1 Solution process
+    1.2 Encoding of algorithm
+    
+    
+Preparation and randomization of test chords
+    
+    2.2 Determination of sample size
+    2.1 Assignment of test chord parameters (citation of paper) to arbitrary numbers
+    2.3 Acquisition of RNG
+    2.4 Stratified random sampling of chords
+    
+    
+Testing, data collection
+
+    3.1 Algorithm testing on randomly chosen test chords
+    3.2 Data logging
+    3.3 Data analysis
+    

@@ -1,0 +1,6 @@
+ACTIVITY LOG N04
+
+Time: ---xm
+Place: SM North Edsa Annex NEO branch
+Activity: Installation of GPU
+Output: GPU in desktop and functioning.

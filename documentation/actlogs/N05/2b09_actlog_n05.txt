@@ -1,0 +1,6 @@
+ACTIVITY LOG N05
+
+Time: 11/16 9AM to 11/17 10:10pm
+Place: Home (Navarro)
+Activity: Installation of software components
+Output: Successfully installed anaconda, keras, pygame, and theano

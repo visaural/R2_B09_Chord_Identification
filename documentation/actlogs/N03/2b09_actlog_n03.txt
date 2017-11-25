@@ -1,0 +1,6 @@
+ACTIVITY LOG N03
+
+Time: 7:10am
+Place: Home
+Activity: Writing of random sampling program
+Output: Functioning (and tested) random sampling program.

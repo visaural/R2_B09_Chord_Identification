@@ -1,0 +1,72 @@
+clog 2
+24 Oct 2017 Tue
+------
+959AM-1030AM
+Math Unit
+
+- progress
+    > Metho Plan
+
+- concerns
+    - Installation of Programming Tools
+        > Try using first workstation
+            - on Windows
+            - on dual boot Linux
+        > 
+
+    - NN design
+        - What's the input of the NN?
+        - Try a 12x37 design
+        - Try NN with subset of chords
+        - Use laptop as smaller-subset try of study
+
+    - Statistical techniques
+        - What methods should be used?
+        - Datasets are identical, is this valid?
+
+    - Connections
+        - Ma'am Marian and her friends
+        - NCAC
+
+
+clog 3
+7 Nov 2017 Tue
+------
+1210-100 PM
+- presentation
+
+
+clog 4
+7 Nov 2017 Tue
+------
+1607 - 1630
+
+Solving the "Don't install in default location" ambiguity problem
+    - install Anaconda in another location in C:
+    
+
+Easy localization of project
+    - Go over methodology again so that this is ensured
+    
+Understanding NNs
+    - Last session we talked about connections
+    - Ma'am Marian: learn NN during break
+    - NCAC: maybe during Christmas break?
+    - Kiel: Try preliminary studies
+    - Determination of Sample size per pass
+        > No idea
+        > Might be dependent on the design
+        > Use the break and connections
+
+Design of NN
+    - Don't follow the MADALINE model
+    - Try finding more efficient ways to design the NN
+
+Both of us have perios
+    - Physics (11/13)
+    
+Next meeting: Next-next week
+Task: Follow up LJ
+    
+    
+    
