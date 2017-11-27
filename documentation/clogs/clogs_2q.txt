@@ -67,6 +67,21 @@ Both of us have perios
     
 Next meeting: Next-next week
 Task: Follow up LJ
+
+clog 6
+19 Nov 2017 Tue
+------
+12am
+Maded Batara III
+- sampling method: 60/20/20
+
+
+clog 7
+25 Nov 2017 Sat
+Maria April Rose Andaca
+- project management
+- installed Git
+- project now on Github
     
     
     
