@@ -26,7 +26,7 @@ ct = []
 SAMPLE_SIZE_G = 7
 INPUTS = "../input_dataset_binaries.txt"
 OUTPUTS = "../input_dataset_output_binaries.txt"
-SAMPLE_FILE = "../samples/sample.txt"
+SAMPLE_FILE = "../samples/sample_3.txt"
 
 def chordgen():
     for rootNote in scale.TWELVE_NOTE_SCALE:
@@ -183,6 +183,6 @@ chordgen()
 
 if SAMPLE_SIZE_G < 12:
     sample(SAMPLE_SIZE_G)
-    # writeSampleToFile(flatSampleChords, notInTheSample)
+    #writeSampleToFile(flatSampleChords, notInTheSample)
 else:
     print("Sample invalid.")
