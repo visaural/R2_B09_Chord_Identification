@@ -1,0 +1,37 @@
+RESEARCH 2
+THIRD QUARTER REQUIREMENTS
+    
+    
+    NAME                        PERCENTAGE               DUE DATE
+    Revised Qtrly PROJ PLAN     5
+        - 3Q Task List
+        - 3Q Network Chart
+        - 3Q Gantt Chart
+        - 3Q Manpower Assgnt
+        
+    Project Management          20
+        AccomplTable : RT
+        QualPerf     : RA
+        ActLogs      : RT
+        %CompTaskList: RT
+    
+    
+    Project Implementation      20
+        ResearchAttEth : RA
+    
+    Documentation+LJ            5
+    
+    Paper & Presentations (P&P) 50
+        Introduction            (5)
+            - Bkgd
+            - Objectives
+            - Significance
+            
+        Lit Rev                 (10)
+        Rev Metho               (5)
+        Project Pres            (10)
+            - Poster
+        R&D w/ Pres             (15)
+            - This is just the 
+              R&D write up
+        Peer Eval               (5)
