@@ -2,8 +2,8 @@ RESEARCH 2
 THIRD QUARTER REQUIREMENTS
     
     
-    NAME                        PERCENTAGE               DUE DATE
-    Revised Qtrly PROJ PLAN     5
+    NAME                        PERCENTAGE               COMPLETION STATUS
+    Revised Qtrly PROJ PLAN     5                        COMPLETE
         - 3Q Task List
         - 3Q Network Chart
         - 3Q Gantt Chart
