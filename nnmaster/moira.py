@@ -20,6 +20,8 @@ def determineNote(NEURON_0_VALUE):
                 return NOTES[i - 1]
             elif NEURON_0_VALUE > 0.96:
                 return "B"
+            else:
+                return None
 
 # Tester
 if __name__ == "__main__":
