@@ -73,10 +73,10 @@ def determineChordName(outputs):
 
 # Tester
 def test():
-    cs = input("Enter the chord output: ").strip().split(' ')
+    the_road = input("Enter the chord output: ").strip().split(' ')
     #print(cs)
     c = []
-    for k in cs:
+    for k in the_road:
         if len(k) > 1:
             c.append(float(k))
         else:
