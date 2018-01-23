@@ -25,7 +25,6 @@ NOTE    C    C#    D    D#    E    F    F#    G    G#    A    A#    B
 '''
 
 class ChordTypes(Enum):
-
     # Triads
     MAJOR           = (1, 5, 8)
     MINOR           = (1, 4, 8)
