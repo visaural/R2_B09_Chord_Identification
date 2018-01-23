@@ -1,0 +1,5 @@
+ACTIVITY LOG N09
+Time: 1/21/2018 5pm-7pm
+Place: Home (Navarro)
+Activity: Configuring neural network libraries and GPU to work with each other
+Output: There is a problem with installing CUDA. Consultations are needed.
