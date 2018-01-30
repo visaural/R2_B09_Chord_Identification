@@ -14,7 +14,6 @@ Mappings of chord types to NN outputs.
 
 import output_mappings
 
-
 NOTES = [0.08, 0.16, 0.24, 0.32, 0.40, 0.48, 0.56, 0.64, 0.72, 0.80, 0.88, 0.96]
 CHORD_TYPES = [
     output_mappings.MAJOR,

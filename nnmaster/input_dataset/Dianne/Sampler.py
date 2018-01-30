@@ -66,6 +66,7 @@ def sample(SAMPLE_SIZE):
 
     # ===============================================================================
     # WRITING SUBROUTINE
+    # TODO: Place raw inputs and expected outputs in a numpy array for easy interpretation in Keras.
 
     inputs_file = open(INPUTS, 'r')
     outputs_file = open(OUTPUTS, 'r')
