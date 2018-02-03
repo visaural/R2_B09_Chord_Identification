@@ -16,6 +16,7 @@ import scale
 import chord
 import ChordTypes
 import random
+import numpy as NP
 
 listOfChordsOfChordTypes = []
 listOfChords = []
@@ -26,7 +27,8 @@ ct = []
 SAMPLE_SIZE_G = 7
 INPUTS = "../input_dataset_binaries.txt"
 OUTPUTS = "../input_dataset_output_binaries.txt"
-SAMPLE_FILE = "../samples/sample_3.txt"
+SAMPLE_FILE = "../samples/sample_one.txt"
+
 
 def chordgen():
     for rootNote in scale.TWELVE_NOTE_SCALE:
@@ -34,6 +36,20 @@ def chordgen():
             listOfChords.append(chord.Chord(rootNote, chordType))
 
     print(listOfChords)
+
+def output_array_to_file(in_sample, out_sample, in_notsample, out_notsample):
+    IS_FP = "../samples/database/NP_INPUT_NEURON_VALUES.npy"
+    OS_FP = "../samples/database/NP_OUTPUT_NEURON_VALUES.npy"
+    INS_FP = "../samples/database/NP_INPUT_NEURON_VALUES_NOT_SAMPLE.npy"
+    ONS_FP = "../samples/database/NP_OUTPUT_NEURON_VALUES_NOT_SAMPLE.npy"
+
+    NP.save(IS_FP, in_sample)
+    NP.save(OS_FP, out_sample)
+    NP.save(INS_FP, in_notsample)
+    NP.save(ONS_FP, out_notsample)
+
+    print("numpy array save complete.")
+
 
 def sample(SAMPLE_SIZE):
     # Makes list of list of chords. The top level list is broken down into lists of chords grouped by type
@@ -66,12 +82,19 @@ def sample(SAMPLE_SIZE):
 
     # ===============================================================================
     # WRITING SUBROUTINE
-    # TODO: Place raw inputs and expected outputs in a numpy array for easy interpretation in Keras.
 
     inputs_file = open(INPUTS, 'r')
     outputs_file = open(OUTPUTS, 'r')
     inputs_file_contents = [i.strip().split() for i in inputs_file]
     outputs_file_contents = [i.strip().split() for i in outputs_file]
+
+    INPUT_NEURON_VALUES = []
+    OUTPUT_NEURON_VALUES = []
+    INPUT_NEURON_VALUES_NOT_SAMPLE = []
+    OUTPUT_NEURON_VALUES_NOT_SAMPLE = []
+
+    temp1 = []
+    temp2 = []
 
     print(inputs_file_contents)
     print(len(inputs_file_contents))
@@ -83,6 +106,7 @@ def sample(SAMPLE_SIZE):
         counter = 0
         print(len(flatSampleChords))
         for sampleChord in range(len(flatSampleChords)):
+
             for inputs_index in range(len(inputs_file_contents)):
                 # print(inputs_file_contents[inputs_index][0])
                 # print(flatSampleChords[sampleChord].__repr__())
@@ -90,22 +114,39 @@ def sample(SAMPLE_SIZE):
                     counter += 1
                     print(counter)
 
+                    # Name of the chord
                     print(flatSampleChords[sampleChord], end=" ")
                     sampleFile.write(flatSampleChords[sampleChord].__repr__() + " ")
 
+                    # Input representation of the chord as a 24-number list
                     print("INPUTS:", end=" ")
                     sampleFile.write("INPUTS: ")
 
                     for i in range(1, len(inputs_file_contents[inputs_index])):
+                        # Print the value for bug fixing
                         print(inputs_file_contents[inputs_index][i], end=" ")
+                        # Append the value to be written to the file to the numpy array
+                        temp1.append(inputs_file_contents[inputs_index][i])
+                        # Write the value to the file
                         sampleFile.write(inputs_file_contents[inputs_index][i] + " ")
 
+                    INPUT_NEURON_VALUES.append(temp1)
+                    temp1 = []
+
+                    # Output representation of the chord as a 14-number list
                     print("OUTPUTS:", end=" ")
                     sampleFile.write("OUTPUTS: ")
 
                     for k in range(1, len(outputs_file_contents[inputs_index])):
+                        # Print the value for bug fixing
                         print(outputs_file_contents[inputs_index][k], end=" ")
+                        # Append the value to be written to the file to the numpy array
+                        temp2.append(outputs_file_contents[inputs_index][k])
+                        # Write the value to the file
                         sampleFile.write(outputs_file_contents[inputs_index][k] + " ")
+
+                    OUTPUT_NEURON_VALUES.append(temp2)
+                    temp2 = []
 
                     print()
                     sampleFile.write("\n")
@@ -128,29 +169,59 @@ def sample(SAMPLE_SIZE):
 
                     for i in range(1, len(inputs_file_contents[inputs_index])):
                         print(inputs_file_contents[inputs_index][i], end=" ")
+                        # Append the value to be written to the file to the numpy array
+                        temp1.append(inputs_file_contents[inputs_index][i])
                         sampleFile.write(inputs_file_contents[inputs_index][i] + " ")
+
+                    INPUT_NEURON_VALUES_NOT_SAMPLE.append(temp1)
+                    temp1 = []
 
                     print("OUTPUTS:", end=" ")
                     sampleFile.write("OUTPUTS: ")
 
                     for k in range(1, len(outputs_file_contents[inputs_index])):
                         print(outputs_file_contents[inputs_index][k], end=" ")
+                        # Append the value to be written to the file to the numpy array
+                        temp2.append(outputs_file_contents[inputs_index][k])
                         sampleFile.write(outputs_file_contents[inputs_index][k] + " ")
+
+                    OUTPUT_NEURON_VALUES_NOT_SAMPLE.append(temp2)
+                    temp2 = []
 
                     print()
                     sampleFile.write("\n")
 
+        # print(INPUT_NEURON_VALUES)
+        # print(OUTPUT_NEURON_VALUES)
+        # print(INPUT_NEURON_VALUES_NOT_SAMPLE)
+        # print(OUTPUT_NEURON_VALUES_NOT_SAMPLE)
 
+        # Make numpy arrays of the sample
 
+        NP_INPUT_NEURON_VALUES = NP.array(INPUT_NEURON_VALUES)
+        NP_OUTPUT_NEURON_VALUES = NP.array(OUTPUT_NEURON_VALUES)
+        NP_INPUT_NEURON_VALUES_NOT_SAMPLE = NP.array(INPUT_NEURON_VALUES_NOT_SAMPLE)
+        NP_OUTPUT_NEURON_VALUES_NOT_SAMPLE = NP.array(OUTPUT_NEURON_VALUES_NOT_SAMPLE)
 
-# def writeSampleToFile(sampleChords, not_in_sample):
+        print("-------------------------------------")
+        print("NUMPY ARRAYS")
+        print("-------------------------------------")
+        print()
+        print("NP_INPUT_NEURON_VALUES")
+        print(NP_INPUT_NEURON_VALUES)
+        print()
+        print("NP_OUTPUT_NEURON_VALUES")
+        print(NP_OUTPUT_NEURON_VALUES)
+        print()
+        print("NP_INPUT_NEURON_VALUES_NOT_SAMPLE")
+        print(NP_INPUT_NEURON_VALUES_NOT_SAMPLE)
+        print()
+        print("NP_OUTPUT_NEURON_VALUES_NOT_SAMPLE")
+        print(NP_OUTPUT_NEURON_VALUES_NOT_SAMPLE)
+        print("-------------------------------------")
 
-
-
-    # with open("../samples/sample.txt", 'w') as sampleFile:
-    #     # Write the chord name, input, and output
-    #     for chord in range(len(flatSampleChords)):
-    #         print(flatSampleChords[chord] + " " * (10 - len(str(flatSampleChords[chord]))))
+        # Outputs sample arrays to h5
+        output_array_to_file(NP_INPUT_NEURON_VALUES, NP_OUTPUT_NEURON_VALUES, NP_INPUT_NEURON_VALUES_NOT_SAMPLE, NP_OUTPUT_NEURON_VALUES_NOT_SAMPLE)
 
 
 def anyTwoElementsEqual(CBL, CL):
@@ -178,7 +249,7 @@ def printEqualElements(CBL, CL):
         print(len(ee) // 2)
 
 
-# =============== MAIN THREAD
+# =============== MAIN THREAD ===============
 
 chordgen()
 
