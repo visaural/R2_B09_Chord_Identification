@@ -14,6 +14,20 @@ from pygame.locals import *
 import moira
 import soleil
 
+def NNtest(INPUT, EXPECTED_OUTPUT):
+    '''
+    Runs a single NN test pass given input and expected outs as numpy arrays.
+    :param EXPECTED_INPUT: Numpy array for expected input.
+    :param EXPECTED_OUTPUT: Numpy array for expected output.
+    :return:
+    '''
+    # TODO: ADD NN (TEST FOR INDIVIDUAL SAMPLE) CODE HERE
+
+    # SAFETY NET: If nothing is running through realtime input then pass
+    if INPUT is None:
+        pass
+
+
 def realTimeTest():
     '''
     Displays the mappings of the notes currently being played on MIDI and runs them through the NN,
@@ -126,7 +140,8 @@ def realTimeTest():
                 print("Something else was tinkered.")
                 print(midi_events[0][0][0])
 
-            # TODO: ADD NN (TEST FOR INDIVIDUAL SAMPLE) CODE HERE
+            # TODO: FILL PARAMETERS FOR NNtest()
+            NNtest(currentNotesInChord, [])
 
     print("Exiting.")
     midi_in.close()
