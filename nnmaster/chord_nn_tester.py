@@ -24,8 +24,10 @@ def NNtest(INPUT, EXPECTED_OUTPUT):
     # TODO: ADD NN (TEST FOR INDIVIDUAL SAMPLE) CODE HERE
 
     # SAFETY NET: If nothing is running through realtime input then pass
-    if INPUT is None:
+    if INPUT is None or len(INPUT) < 24:
         pass
+    else:
+        # TODO: Add NN code here
 
 
 def realTimeTest():
