@@ -11,8 +11,12 @@ import loc_note_MIDI
 import pygame
 from pygame import midi
 from pygame.locals import *
-import moira
-import soleil
+import moira as moi
+import soleil as sol
+
+def check_gpu():
+    from keras import backend as K
+    K.tensorflow_backend._get_available_gpus()
 
 def NNtest(INPUT, EXPECTED_OUTPUT):
     '''
@@ -28,7 +32,7 @@ def NNtest(INPUT, EXPECTED_OUTPUT):
         pass
     else:
         # TODO: Add NN code here
-
+        pass
 
 def realTimeTest():
     '''
@@ -150,3 +154,7 @@ def realTimeTest():
     pygame.midi.quit()
     pygame.quit()
     exit()
+
+
+# if __name__ == "__main__":
+#     check_gpu()

@@ -4,31 +4,22 @@ version 0.1
 author: R2_B09
 '''
 
-#from keras.models import Sequential
-#from keras.layers import Input, Dense
-#import keras.callbacks
+from keras.models import Sequential, load_model
+from keras.layers import Dense
+import keras.callbacks
 import numpy as NP
 import h5py
+import soleil as sol
+
+FIRST_RUN = True
 
 INPUT_VALS = NP.load("input_dataset/samples/database/NP_INPUT_NEURON_VALUES.npy")
 OUTPUT_VALS = NP.load("input_dataset/samples/database/NP_OUTPUT_NEURON_VALUES.npy")
 VALIDATION_INPUT_VALS = NP.load("input_dataset/samples/database/NP_INPUT_NEURON_VALUES_NOT_SAMPLE.npy")
 VALIDATION_OUTPUT_VALS = NP.load("input_dataset/samples/database/NP_OUTPUT_NEURON_VALUES_NOT_SAMPLE.npy")
 
+
 def splitter():
-    # VALIDATION_I = NP.array_split(VALIDATION_INPUT_VALS, 2)
-    # VALIDATION_O = NP.array_split(VALIDATION_OUTPUT_VALS, 2)
-    #
-    # # VALIDATION_I = []
-    # # VALIDATION_O = []
-    # #
-    # # for i in range(INPUT_VALS.size):
-    #
-    #
-    # NP.save("input_dataset/samples/database/NP_INPUT_VALIDATION.npy", VALIDATION_I[0])
-    # NP.save("input_dataset/samples/database/NP_INPUT_TEST.npy", VALIDATION_I[1])
-    # NP.save("input_dataset/samples/database/NP_OUTPUT_VALIDATION.npy", VALIDATION_O[0])
-    # NP.save("input_dataset/samples/database/NP_OUTPUT_TEST.npy", VALIDATION_O[1])
 
     VI = VALIDATION_INPUT_VALS.tolist()
     VO = VALIDATION_OUTPUT_VALS.tolist()
@@ -53,11 +44,46 @@ def splitter():
     NP.save("input_dataset/samples/database/NP_OUTPUT_VALIDATION.npy", NP.array(VO_VALI))
     NP.save("input_dataset/samples/database/NP_OUTPUT_TEST.npy", NP.array(VO_TEST))
 
+def save_history(mh):
+
+    MODE = 'w' if FIRST_RUN else 'a'
+
+    with open("models/history/mse.txt", MODE) as ModelHistoryMSE:
+         ModelHistoryMSE.write(str(mh.history['mean_squared_error']))
+
+    with open("models/history/val_acc.txt", MODE) as ModelHistoryVA:
+        ModelHistoryVA.write(str(mh.history['val_acc']))
+
+    with open("models/history/val_loss.txt", MODE) as ModelHistoryVL:
+        ModelHistoryVL.write(str(mh.history['val_loss']))
 
 
+if __name__ == "__main__":
 
 
-splitter()
+    if FIRST_RUN:
+        chord_identifier = Sequential()
+        chord_identifier.add(Dense(14, input_shape = (24,), activation = 'sigmoid'))
+        # chord_identifier.add(Dense(240))
+        # chord_identifier.add(Dense(140))
+        chord_identifier.add(Dense(14, activation = 'softmax'))
 
+        chord_identifier.compile(optimizer = 'sgd', loss = 'mean_squared_error', metrics = ['mse', 'accuracy'])
+        checkpointer = keras.callbacks.ModelCheckpoint("models/chord_identifier.h5", verbose=1)
 
-#chord_identifier = Sequential()
+        h = chord_identifier.fit(INPUT_VALS, OUTPUT_VALS, epochs = 1000, verbose = 1, validation_data = (VALIDATION_INPUT_VALS, VALIDATION_OUTPUT_VALS))
+        save_history(h)
+
+        sol.graph_from_History(things_to_graph=['acc', 'val_acc'], MHObject=h, title="Model accuracy", ylabel="Accuracy", xlabel="Epoch", legendlist=['train', 'test'], legendloc = 'upper left')
+        sol.graph_from_History(things_to_graph=['loss', 'val_loss'], MHObject=h, title="Model losses", ylabel="Loss", xlabel="Epoch", legendlist=['train', 'test'], legendloc = 'upper left')
+
+    else:
+        # recall and train
+        chord_identifier = keras.models.load_model("models/chord_identifier.h5")
+        chord_identifier.compile(optimizer='sgd', loss='mean_squared_error', metrics=['mse', 'accuracy'])
+        checkpointer = keras.callbacks.ModelCheckpoint("models/chord_identifier.h5", verbose=1)
+
+        h = chord_identifier.fit(INPUT_VALS, OUTPUT_VALS, epochs=1000, verbose=1, validation_data=(VALIDATION_INPUT_VALS, VALIDATION_OUTPUT_VALS))
+        save_history(h)
+
+        sol.graph_from_History(things_to_graph=['acc', 'val_acc'], MHObject=h, title="Model accuracy", ylabel="Accuracy", xlabel="Epoch", legendlist=['train', 'test'], legendloc = 'upper left')

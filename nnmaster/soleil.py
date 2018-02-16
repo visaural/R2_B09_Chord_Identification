@@ -8,3 +8,14 @@ Various methods for recording the value of the cost function.
 '''
 
 import time
+import matplotlib.pyplot as plt
+
+def graph_from_History(things_to_graph, MHObject, title=None, ylabel=None, xlabel=None, legendlist=None, legendloc='upper left'):
+    for i in range(len(things_to_graph)):
+        plt.plot(MHObject.history[things_to_graph[i]])
+
+    plt.title(title)
+    plt.ylabel(ylabel)
+    plt.xlabel(xlabel)
+    plt.legend(legendlist, loc=legendloc)
+    plt.show()
