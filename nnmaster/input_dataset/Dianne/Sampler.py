@@ -43,6 +43,8 @@ def output_array_to_file(in_sample, out_sample, in_notsample, out_notsample):
     INS_FP = "../samples/database/NP_INPUT_NEURON_VALUES_NOT_SAMPLE.npy"
     ONS_FP = "../samples/database/NP_OUTPUT_NEURON_VALUES_NOT_SAMPLE.npy"
 
+
+
     NP.save(IS_FP, in_sample)
     NP.save(OS_FP, out_sample)
     NP.save(INS_FP, in_notsample)
@@ -198,10 +200,15 @@ def sample(SAMPLE_SIZE):
 
         # Make numpy arrays of the sample
 
-        NP_INPUT_NEURON_VALUES = NP.array(INPUT_NEURON_VALUES)
-        NP_OUTPUT_NEURON_VALUES = NP.array(OUTPUT_NEURON_VALUES)
-        NP_INPUT_NEURON_VALUES_NOT_SAMPLE = NP.array(INPUT_NEURON_VALUES_NOT_SAMPLE)
-        NP_OUTPUT_NEURON_VALUES_NOT_SAMPLE = NP.array(OUTPUT_NEURON_VALUES_NOT_SAMPLE)
+        # print(len(INPUT_NEURON_VALUES))
+        # print(len(OUTPUT_NEURON_VALUES))
+        # print(len(INPUT_NEURON_VALUES_NOT_SAMPLE))
+        # print(len(OUTPUT_NEURON_VALUES_NOT_SAMPLE))
+
+        NP_INPUT_NEURON_VALUES = NP.asarray(INPUT_NEURON_VALUES)
+        NP_OUTPUT_NEURON_VALUES = NP.asarray(OUTPUT_NEURON_VALUES)
+        NP_INPUT_NEURON_VALUES_NOT_SAMPLE = NP.asarray(INPUT_NEURON_VALUES_NOT_SAMPLE)
+        NP_OUTPUT_NEURON_VALUES_NOT_SAMPLE = NP.asarray(OUTPUT_NEURON_VALUES_NOT_SAMPLE)
 
         print("-------------------------------------")
         print("NUMPY ARRAYS")
@@ -221,7 +228,7 @@ def sample(SAMPLE_SIZE):
         print("-------------------------------------")
 
         # Outputs sample arrays to h5
-        output_array_to_file(NP_INPUT_NEURON_VALUES, NP_OUTPUT_NEURON_VALUES, NP_INPUT_NEURON_VALUES_NOT_SAMPLE, NP_OUTPUT_NEURON_VALUES_NOT_SAMPLE)
+        output_array_to_file(NP_INPUT_NEURON_VALUES.astype(float), NP_OUTPUT_NEURON_VALUES.astype(float), NP_INPUT_NEURON_VALUES_NOT_SAMPLE.astype(float), NP_OUTPUT_NEURON_VALUES_NOT_SAMPLE.astype(float))
 
 
 def anyTwoElementsEqual(CBL, CL):
