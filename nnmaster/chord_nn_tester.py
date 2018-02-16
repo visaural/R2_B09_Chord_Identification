@@ -31,6 +31,7 @@ def NNtest(INPUT, EXPECTED_OUTPUT):
     if INPUT is None or len(INPUT) < 24:
         pass
     else:
+        _IN_ = NP.asarray(INPUT)
         # TODO: Add NN code here
         pass
 
