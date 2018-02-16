@@ -64,8 +64,8 @@ if __name__ == "__main__":
     if FIRST_RUN:
         chord_identifier = Sequential()
         chord_identifier.add(Dense(14, input_shape = (24,), activation = 'sigmoid'))
-        # chord_identifier.add(Dense(240))
-        # chord_identifier.add(Dense(140))
+        chord_identifier.add(Dense(2))
+        chord_identifier.add(Dense(2))
         chord_identifier.add(Dense(14, activation = 'softmax'))
 
         chord_identifier.compile(optimizer = 'sgd', loss = 'mean_squared_error', metrics = ['mse', 'accuracy'])
