@@ -32,8 +32,13 @@ def NNtest(INPUT, EXPECTED_OUTPUT):
         pass
     else:
         _IN_ = NP.asarray(INPUT)
-        # TODO: Add NN code here
-        pass
+        chord_identifier = keras.models.load_model("models/chord_identifier.h5")
+        chord_identifier.compile(optimizer='sgd', loss='mean_squared_error', metrics=['mse', 'accuracy'])
+        guess_np = chord_identifier.predict(_IN_)
+        guess = guess_np.tolist()
+        print(moi.determineChordName(guess))
+
+
 
 def realTimeTest():
     '''
