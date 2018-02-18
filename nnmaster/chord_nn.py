@@ -20,7 +20,6 @@ VALIDATION_OUTPUT_VALS = NP.load("input_dataset/samples/database/NP_OUTPUT_NEURO
 
 
 def splitter():
-
     VI = VALIDATION_INPUT_VALS.tolist()
     VO = VALIDATION_OUTPUT_VALS.tolist()
     print(VI, len(VI))
@@ -45,7 +44,6 @@ def splitter():
     NP.save("input_dataset/samples/database/NP_OUTPUT_TEST.npy", NP.array(VO_TEST))
 
 def save_history(mh):
-
     MODE = 'w' if FIRST_RUN else 'a'
 
     with open("models/history/mse.txt", MODE) as ModelHistoryMSE:

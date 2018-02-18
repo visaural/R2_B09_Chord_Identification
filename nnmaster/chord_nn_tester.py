@@ -39,9 +39,13 @@ def NNtest(INPUT, EXPECTED_OUTPUT, IDENTIFIER):
 
         guess = guess_np.flatten().tolist()
         #print(guess)
+
         print("===============================")
-        print("Guessed chord: " + moi.determineChordName(guess))
+        outertick = timeit.default_timer()
+        print("Guessed chord: " + moi.determineChordName(guess, INPUT))
+        outertock = timeit.default_timer()
         print("Time elapsed: " + str(tock - tick))
+        print("Time elapsed, including display chord: " + str(tock - tick + outertock - outertick))
         print("===============================")
 
 
@@ -136,8 +140,8 @@ def realTimeTest(ID):
                 # Add note being played
                 currentNoteNamesInChord.append(loc_note_MIDI.Loc_Note_MIDI.midiNumToNote(midi_events[0][0][1]))
 
-                print(currentNotesInChord)
-                print(currentNoteNumbersInChord)
+                #print(currentNotesInChord)
+                #print(currentNoteNumbersInChord)
                 print(currentNoteNamesInChord)
 
             # MIDI NOTE OFF
