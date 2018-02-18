@@ -3,7 +3,7 @@ chord_nn_tester.py
 version 0.1
 author: R2_B09
 '''
-import sys
+import sys, timeit
 import keras
 import numpy as NP
 import h5py
@@ -18,29 +18,34 @@ def check_gpu():
     from keras import backend as K
     K.tensorflow_backend._get_available_gpus()
 
-def NNtest(INPUT, EXPECTED_OUTPUT):
+def NNtest(INPUT, EXPECTED_OUTPUT, IDENTIFIER):
     '''
     Runs a single NN test pass given input and expected outs as numpy arrays.
     :param EXPECTED_INPUT: Numpy array for expected input.
     :param EXPECTED_OUTPUT: Numpy array for expected output.
     :return:
     '''
-    # TODO: ADD NN (TEST FOR INDIVIDUAL SAMPLE) CODE HERE
 
     # SAFETY NET: If nothing is running through realtime input then pass
     if INPUT is None or len(INPUT) < 24:
         pass
     else:
-        _IN_ = NP.asarray(INPUT)
-        chord_identifier = keras.models.load_model("models/chord_identifier.h5")
-        chord_identifier.compile(optimizer='sgd', loss='mean_squared_error', metrics=['mse', 'accuracy'])
-        guess_np = chord_identifier.predict(_IN_)
-        guess = guess_np.tolist()
-        print(moi.determineChordName(guess))
+        _IN_ = NP.array(INPUT)
+        print(str(NP.shape(_IN_)))
+
+        tick = timeit.default_timer()
+        guess_np = IDENTIFIER.predict(_IN_.reshape(1, 24))
+        tock = timeit.default_timer()
+
+        guess = guess_np.flatten().tolist()
+        print(guess)
+        print("===============================")
+        print("Guessed chord: " + moi.determineChordName(guess))
+        print("Time elapsed: " + str(tock - tick))
+        print("===============================")
 
 
-
-def realTimeTest():
+def realTimeTest(ID):
     '''
     Displays the mappings of the notes currently being played on MIDI and runs them through the NN,
     (kushalbhabra, 2013; Tang, n.d.)
@@ -152,8 +157,9 @@ def realTimeTest():
                 print("Something else was tinkered.")
                 print(midi_events[0][0][0])
 
-            # TODO: FILL PARAMETERS FOR NNtest()
-            NNtest(currentNotesInChord, [])
+            # Execute NN testing only if there are more than 2 notes playing
+            if currentNotesInChord.count(1) > 2:
+                NNtest(currentNotesInChord, [], ID)
 
     print("Exiting.")
     midi_in.close()
@@ -162,5 +168,7 @@ def realTimeTest():
     exit()
 
 
-# if __name__ == "__main__":
-#     check_gpu()
+if __name__ == "__main__":
+    chord_identifier = keras.models.load_model("models/chord_identifier.h5")
+    chord_identifier.compile(optimizer='sgd', loss='mean_squared_error', metrics=['mse', 'accuracy'])
+    realTimeTest(chord_identifier)

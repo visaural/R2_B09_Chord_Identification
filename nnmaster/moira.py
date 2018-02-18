@@ -8,26 +8,44 @@ An algorithm that shows the chord name
 for every combination of neural network outputs.
 '''
 
+import math
+
 UPPER_BOUNDS = [0.08, 0.16, 0.24, 0.32, 0.40, 0.48, 0.56, 0.64, 0.72, 0.80, 0.88, 0.96]
 NOTES        = ['C',  'C#', 'D',  'D#', 'E',  'F',  'F#', 'G',  'G#', 'A',  'A#', 'B']
 
+def softmax(x):
+    x_exp = [math.exp(i) for i in x]
+    print([round(i, 2) for i in x_exp])
+    sum_x_exp = sum(x_exp)
+    print(round(sum_x_exp, 2))
+    soft_max = [round(i / sum_x_exp, 3) for i in x_exp]
+    return soft_max
+
 def determineNote(NEURON_0_VALUE):
+    #print(NEURON_0_VALUE)
     if NEURON_0_VALUE < 0.08:
-        return None
+        return 'C'
     else:
         for i in range(1, 12):
-            if UPPER_BOUNDS[i - 1] <= NEURON_0_VALUE < UPPER_BOUNDS[i]:
-                return NOTES[i - 1]
-            elif NEURON_0_VALUE >= 0.96:
+            if UPPER_BOUNDS[i - 1] < NEURON_0_VALUE <= UPPER_BOUNDS[i]:
+                return NOTES[i]
+            elif NEURON_0_VALUE >= 0.96
                 return "B"
 
-def determineChordName(outputs):
+def determineChordName(outputs) -> str:
     rn = float(outputs[0])
+    softmax_in = []
+    for i in range(1, len(outputs)):
+        softmax_in.append(outputs[i])
     ROOT_NOTE = determineNote(rn)
+    #print(ROOT_NOTE):
     chord_modifiers = ""
 
+    soft_max_expected = [0]
+    soft_max_expected.extend(softmax(softmax_in))
+
     for output_neuron in range(1, len(outputs)):
-        if outputs[output_neuron] == 1:             # The number contained is 1
+        if outputs[output_neuron] >= soft_max_expected:             # The number contained is 1
             if output_neuron == 1:                  # The index is some value
                 chord_modifiers += "maj"
             elif output_neuron == 2:
@@ -42,7 +60,7 @@ def determineChordName(outputs):
                 pass
 
     for output_neuron in range(1, len(outputs)):
-        if outputs[output_neuron] == 1:
+        if outputs[output_neuron] >= soft_max_expected:
             if output_neuron == 8:
                 chord_modifiers += "6"
             elif output_neuron == 9:
@@ -57,7 +75,7 @@ def determineChordName(outputs):
                 pass
 
     for output_neuron in range(1, len(outputs)):
-        if outputs[output_neuron] == 1:
+        if outputs[output_neuron] >= soft_max_expected:
             if output_neuron == 13:
                 chord_modifiers += "(9)"
             elif output_neuron == 5:
@@ -72,21 +90,22 @@ def determineChordName(outputs):
     return ROOT_NOTE + chord_modifiers
 
 # Tester
-def test():
-    the_road = input("Enter the chord output: ").strip().split(' ')
-    #print(cs)
-    c = []
-    for k in the_road:
-        if len(k) > 1:
-            c.append(float(k))
-        else:
-            c.append(int(k))
+def test__():
+    # the_road = input("Enter the chord output: ").strip().split(' ')
+    # #print(cs)
+    # c = []
+    # for k in the_road:
+    #     if len(k) > 1:
+    #         c.append(float(k))
+    #     else:
+    #         c.append(int(k))
     #print(c)
 
-    #       n  ma mi a  d  s2 s4 b5 6  7  9  11 +M7+9
-    #c = [0.88, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0]
+    #      n  ma mi a  d  s2 s4 b5 6  7  9  11 +M7+9
+    # Expected: A#11sus2
+    c = [0.09, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0]
     print(determineChordName(c))
 
 # TESTER BLOCK
 # if __name__ == "__main__":
-#     test()
+#     test__()
