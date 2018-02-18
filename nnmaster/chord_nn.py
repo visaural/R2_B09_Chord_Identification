@@ -11,7 +11,7 @@ import numpy as NP
 import h5py
 import soleil as sol
 
-FIRST_RUN = True
+FIRST_RUN = False
 
 INPUT_VALS = NP.load("input_dataset/samples/database/NP_INPUT_NEURON_VALUES.npy")
 OUTPUT_VALS = NP.load("input_dataset/samples/database/NP_OUTPUT_NEURON_VALUES.npy")

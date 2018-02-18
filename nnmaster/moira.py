@@ -29,7 +29,7 @@ def determineNote(NEURON_0_VALUE):
         for i in range(1, 12):
             if UPPER_BOUNDS[i - 1] < NEURON_0_VALUE <= UPPER_BOUNDS[i]:
                 return NOTES[i]
-            elif NEURON_0_VALUE >= 0.96
+            elif NEURON_0_VALUE >= 0.96:
                 return "B"
 
 def determineChordName(outputs) -> str:
@@ -45,7 +45,7 @@ def determineChordName(outputs) -> str:
     soft_max_expected.extend(softmax(softmax_in))
 
     for output_neuron in range(1, len(outputs)):
-        if outputs[output_neuron] >= soft_max_expected:             # The number contained is 1
+        if outputs[output_neuron] >= soft_max_expected[output_neuron]:             # The number contained is 1
             if output_neuron == 1:                  # The index is some value
                 chord_modifiers += "maj"
             elif output_neuron == 2:
@@ -60,7 +60,7 @@ def determineChordName(outputs) -> str:
                 pass
 
     for output_neuron in range(1, len(outputs)):
-        if outputs[output_neuron] >= soft_max_expected:
+        if outputs[output_neuron] >= soft_max_expected[output_neuron]:
             if output_neuron == 8:
                 chord_modifiers += "6"
             elif output_neuron == 9:
@@ -75,7 +75,7 @@ def determineChordName(outputs) -> str:
                 pass
 
     for output_neuron in range(1, len(outputs)):
-        if outputs[output_neuron] >= soft_max_expected:
+        if outputs[output_neuron] >= soft_max_expected[output_neuron]:
             if output_neuron == 13:
                 chord_modifiers += "(9)"
             elif output_neuron == 5:

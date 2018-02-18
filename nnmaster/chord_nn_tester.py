@@ -31,14 +31,14 @@ def NNtest(INPUT, EXPECTED_OUTPUT, IDENTIFIER):
         pass
     else:
         _IN_ = NP.array(INPUT)
-        print(str(NP.shape(_IN_)))
+        #print(str(NP.shape(_IN_)))
 
         tick = timeit.default_timer()
         guess_np = IDENTIFIER.predict(_IN_.reshape(1, 24))
         tock = timeit.default_timer()
 
         guess = guess_np.flatten().tolist()
-        print(guess)
+        #print(guess)
         print("===============================")
         print("Guessed chord: " + moi.determineChordName(guess))
         print("Time elapsed: " + str(tock - tick))
