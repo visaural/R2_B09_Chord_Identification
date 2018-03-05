@@ -3,7 +3,7 @@ chord_nn_tester.py
 version 0.1
 author: R2_B09
 '''
-import sys, timeit
+import timeit
 import keras
 import numpy as NP
 import h5py
@@ -12,7 +12,7 @@ import pygame
 from pygame import midi
 from pygame.locals import *
 import moira as moi
-import soleil as sol
+#import soleil as sol
 
 def check_gpu():
     from keras import backend as K

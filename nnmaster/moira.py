@@ -8,7 +8,8 @@ An algorithm that shows the chord name
 for every combination of neural network outputs.
 '''
 
-import math, numpy as NP
+import math
+import numpy as NP
 
 UPPER_BOUNDS = [0.08, 0.16, 0.24, 0.32, 0.40, 0.48, 0.56, 0.64, 0.72, 0.80, 0.88, 0.96]
 NOTES        = ['C',  'C#', 'D',  'D#', 'E',  'F',  'F#', 'G',  'G#', 'A',  'A#', 'B']

@@ -7,7 +7,6 @@ author: R2-B09, 2018
 Various methods for recording the value of the cost function.
 '''
 
-import time
 import matplotlib.pyplot as plt
 
 def graph_from_History(things_to_graph, MHObject, title=None, ylabel=None, xlabel=None, legendlist=None, legendloc='upper left'):
