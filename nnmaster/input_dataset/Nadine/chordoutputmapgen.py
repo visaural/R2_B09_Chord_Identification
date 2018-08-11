@@ -67,9 +67,14 @@ def chordmap(N, CT):
     i = 0
     while i < len(N):
         for chord in CT:
+            chordTypeNeurons = []
             # chord[0] = N[i]
             # listOfOutputVectors.append(chord)
             listOfOutputVectors.append((N[i], chord[1], chord[2], chord[3], chord[4], chord[5], chord[6], chord[7], chord[8], chord[9], chord[10], chord[11], chord[12], chord[13]))
+            #for k in range(1, len(chord)):
+            #    chordTypeNeurons.append(chord[k])
+            #listOfOutputVectors.append((N[i]))
+            #listOfOutputVectors.append((N[i], [j for j in chordTypeNeurons]))
         i += 1
 
     for i in listOfOutputVectors: print(i)
