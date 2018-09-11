@@ -21,9 +21,9 @@ Main file.
 
 import sys
 import loc_note_MIDI
-import pygame
-from pygame import midi
-from pygame.locals import *
+#import pygame
+#from pygame import midi
+#from pygame.locals import *
 
 sys.path.insert(0, "../Dianne/")
 
@@ -35,6 +35,21 @@ chordTypesList = []
 chordObjectsList = []
 chordPossList = []
 chordBoolsList = []
+
+def chordmap_2(input_file, WRITE_TO_OUTPUT_FILE):
+    # STEP 1: MAKE LIST OF CHORDS
+    input_notes = open(INPUT_FILE)
+    # chordsList, chordTypesList = [i.strip().split(' ') for i in input_notes]
+
+    chordsList = ([i.strip().split() for i in input_notes])
+
+    for i in range(4):
+        chordsList.pop()
+
+    print(chordsList)
+    print(len(chordsList))
+
+    # STEP 2: MAKE LIST OF DISTANCES BETWEEN NOTES
 
 def chordmap(input_file, WRITE_TO_OUTPUT_FILE):
 
@@ -250,9 +265,17 @@ if __name__ == "__main__":
 
     print("Real-time MIDI to ANN Input Interpreter")
 
-    choice = input("Generate chord file? [y/n]: ")
-    if choice in ['y', 'Y']:
+    choice = input("Generate chord file? [v1/v2/n]: ")
+    if choice in ['v1', 'V1']:
         chordmap(INPUT_FILE, True)
+    elif choice in ['v2', 'V2']:
+        chordmap_2(INPUT_FILE, True)
+    else:
+        choice3 = input("Test chordmap()? [v1/v2/n]: ")
+        if choice3 in ['v1', 'V1']:
+            chordmap(INPUT_FILE, False)
+        elif choice3 in ['v2', 'V2']:
+            chordmap_2(INPUT_FILE, False)
 
     choice2 = input("Enter real-time MIDI-ANN input mode? ")
     if choice2 in ['y', 'Y']:
