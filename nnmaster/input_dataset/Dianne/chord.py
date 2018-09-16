@@ -55,7 +55,8 @@ class Chord():
         while self.scaleNotesSelection < 24 and self.patternSelection < len(self.pattern):
             #print('Checking self.pattern', self.patternSelection)
             if self.scaleNotes[self.scaleNotesSelection] == self.pattern[self.patternSelection]:
-                self.absolutePositionNotes.append(24 if (self.scaleNotesSelection + noteNum == 24) else (self.scaleNotesSelection + noteNum) % 24)
+                #self.absolutePositionNotes.append(24 if (self.scaleNotesSelection + noteNum == 24) else (self.scaleNotesSelection + noteNum) % 24)
+                self.absolutePositionNotes.append(24 if (self.scaleNotesSelection + noteNum == 24) else (self.scaleNotesSelection + noteNum))
                 self.patternSelection += 1
 
             self.scaleNotesSelection += 1

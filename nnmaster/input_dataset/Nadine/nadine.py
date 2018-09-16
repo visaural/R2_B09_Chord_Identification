@@ -35,6 +35,7 @@ chordTypesList = []
 chordObjectsList = []
 chordPossList = []
 chordBoolsList = []
+chordMIDINumbersList = []
 
 def chordmap_2(input_file, WRITE_TO_OUTPUT_FILE):
     # STEP 1: MAKE LIST OF CHORDS
@@ -49,7 +50,55 @@ def chordmap_2(input_file, WRITE_TO_OUTPUT_FILE):
     print(chordsList)
     print(len(chordsList))
 
-    # STEP 2: MAKE LIST OF DISTANCES BETWEEN NOTES
+    # STEP 2: MAKE LIST OF POSITIONS
+    for chord in chordsList:
+        # Numbers at which chord notes are (1 = C, 2 = C#...)
+        chord_notes = []
+
+        for s in chord:
+            try:
+                # Try converting the string to a number
+                num = int(s)
+                # Append the positions
+                chord_notes.append(num)
+            except:
+                # Go to next element if the string can't be converted to a number
+                pass
+        chordPossList.append(chord_notes)
+
+    print(chordPossList)
+    print(len(chordPossList))
+
+    # STEP 3: CONVERT NOTE NUMBER DISTANCES TO MIDI NUMBERS
+    for chord_iteration in range(len(chordPossList)): # All chord types
+        chordMIDINumbersList.append([])
+        for oct_num in range(11):                     # All possible MIDI octaves
+            temp = []
+            for note_num in range(len(chordPossList[chord_iteration])):     # for each number in [1, 5, 8] for example
+                 # if note_num is not 0:
+                 #     if chordPossList[chord_iteration][note_num - 1] > chordPossList[chord_iteration][note_num]:   # Chord note MIDI num entries must be in ascending order
+                 #         print("In " + str(chordPossList[chord_iteration]) + ", " + str(chordPossList[chord_iteration][note_num - 1]) + " is greater than " + str(chordPossList[chord_iteration][note_num]) + ", adding 23")
+                 #         temp.append((12 * oct_num) + (chordPossList[chord_iteration][note_num] + 23))
+                 #     else:
+                 #         temp.append((12 * oct_num) + (chordPossList[chord_iteration][note_num] - 1))
+                 # else:
+                    temp.append((12 * oct_num) + (chordPossList[chord_iteration][note_num] - 1))
+
+            chordMIDINumbersList[chord_iteration].append(temp)
+
+    print(chordMIDINumbersList)
+    print(len(chordMIDINumbersList))
+    print(str(count3DLayeredList2D(chordMIDINumbersList)))
+
+    # STEP 4: DELETE UNNEEDED (n > 127) CHORDS FROM DATABASE
+
+
+def count3DLayeredList2D(ll):
+    k = 0
+    for a in range(len(ll)):
+        for b in range(len(ll[a])):
+            k += 1
+    return k
 
 def chordmap(input_file, WRITE_TO_OUTPUT_FILE):
 

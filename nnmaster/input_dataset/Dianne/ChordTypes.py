@@ -74,7 +74,6 @@ class ChordTypes(Enum):
 
 
     def chordTypeToString(ct):
-
         if ct == ChordTypes.MAJOR:
             return "maj"
         elif ct == ChordTypes.MINOR:

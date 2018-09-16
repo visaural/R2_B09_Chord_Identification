@@ -282,12 +282,12 @@ GM9sus2 G A D F# A   8 10 15 19 22
 GM9sus4 G C D F# A   8 13 15 19 22 
 G9sus2 G A D F A   8 10 15 18 22 
 G9sus4 G C D F A   8 13 15 18 22 
-GM11 G B D F# A C   8 12 15 19 22 1 
-Gm11 G A# D F A C   8 11 15 18 22 1 
-G11 G B D F A C   8 12 15 18 22 1 
-Gaug11 G B D# F A C   8 12 16 18 22 1 
-GM11sus2 G A D F# A C   8 10 15 19 22 1 
-G11sus2 G A D F A C   8 10 15 18 22 1 
+GM11 G B D F# A C   8 12 15 19 22 25 
+Gm11 G A# D F A C   8 11 15 18 22 25 
+G11 G B D F A C   8 12 15 18 22 25 
+Gaug11 G B D# F A C   8 12 16 18 22 25 
+GM11sus2 G A D F# A C   8 10 15 19 22 25 
+G11sus2 G A D F A C   8 10 15 18 22 25 
 GmM7 G A# D F#   8 11 15 19 
 GmM7(9) G A# D F# A   8 11 15 19 22 
 GM6 G B D E   8 12 15 17 
@@ -319,12 +319,12 @@ G#M9sus2 G# A# D# G A#   9 11 16 20 23
 G#M9sus4 G# C# D# G A#   9 14 16 20 23 
 G#9sus2 G# A# D# F# A#   9 11 16 19 23 
 G#9sus4 G# C# D# F# A#   9 14 16 19 23 
-G#M11 G# C D# G A# C#   9 13 16 20 23 2 
-G#m11 G# B D# F# A# C#   9 12 16 19 23 2 
-G#11 G# C D# F# A# C#   9 13 16 19 23 2 
-G#aug11 G# C E F# A# C#   9 13 17 19 23 2 
-G#M11sus2 G# A# D# G A# C#   9 11 16 20 23 2 
-G#11sus2 G# A# D# F# A# C#   9 11 16 19 23 2 
+G#M11 G# C D# G A# C#   9 13 16 20 23 26 
+G#m11 G# B D# F# A# C#   9 12 16 19 23 26 
+G#11 G# C D# F# A# C#   9 13 16 19 23 26 
+G#aug11 G# C E F# A# C#   9 13 17 19 23 26 
+G#M11sus2 G# A# D# G A# C#   9 11 16 20 23 26 
+G#11sus2 G# A# D# F# A# C#   9 11 16 19 23 26 
 G#mM7 G# B D# G   9 12 16 20 
 G#mM7(9) G# B D# G A#   9 12 16 20 23 
 G#M6 G# C D# F   9 13 16 18 
@@ -356,12 +356,12 @@ AM9sus2 A B E G# B   10 12 17 21 24
 AM9sus4 A D E G# B   10 15 17 21 24 
 A9sus2 A B E G B   10 12 17 20 24 
 A9sus4 A D E G B   10 15 17 20 24 
-AM11 A C# E G# B D   10 14 17 21 24 3 
-Am11 A C E G B D   10 13 17 20 24 3 
-A11 A C# E G B D   10 14 17 20 24 3 
-Aaug11 A C# F G B D   10 14 18 20 24 3 
-AM11sus2 A B E G# B D   10 12 17 21 24 3 
-A11sus2 A B E G B D   10 12 17 20 24 3 
+AM11 A C# E G# B D   10 14 17 21 24 27 
+Am11 A C E G B D   10 13 17 20 24 27 
+A11 A C# E G B D   10 14 17 20 24 27 
+Aaug11 A C# F G B D   10 14 18 20 24 27 
+AM11sus2 A B E G# B D   10 12 17 21 24 27 
+A11sus2 A B E G B D   10 12 17 20 24 27 
 AmM7 A C E G#   10 13 17 21 
 AmM7(9) A C E G# B   10 13 17 21 24 
 AM6 A C# E F#   10 14 17 19 
@@ -384,27 +384,27 @@ A#M7sus2 A# C F A   11 13 18 22
 A#M7sus4 A# D# F A   11 16 18 22 
 A#7sus2 A# C F G#   11 13 18 21 
 A#7sus4 A# D# F G#   11 16 18 21 
-A#M9 A# D F A C   11 15 18 22 1 
-A#m9 A# C# F G# C   11 14 18 21 1 
-A#9 A# D F G# C   11 15 18 21 1 
-A#aug9 A# D F# G# C   11 15 19 21 1 
-A#dim9 A# C# E G C   11 14 17 20 1 
-A#M9sus2 A# C F A C   11 13 18 22 1 
-A#M9sus4 A# D# F A C   11 16 18 22 1 
-A#9sus2 A# C F G# C   11 13 18 21 1 
-A#9sus4 A# D# F G# C   11 16 18 21 1 
-A#M11 A# D F A C D#   11 15 18 22 1 4 
-A#m11 A# C# F G# C D#   11 14 18 21 1 4 
-A#11 A# D F G# C D#   11 15 18 21 1 4 
-A#aug11 A# D F# G# C D#   11 15 19 21 1 4 
-A#M11sus2 A# C F A C D#   11 13 18 22 1 4 
-A#11sus2 A# C F G# C D#   11 13 18 21 1 4 
+A#M9 A# D F A C   11 15 18 22 25 
+A#m9 A# C# F G# C   11 14 18 21 25 
+A#9 A# D F G# C   11 15 18 21 25 
+A#aug9 A# D F# G# C   11 15 19 21 25 
+A#dim9 A# C# E G C   11 14 17 20 25 
+A#M9sus2 A# C F A C   11 13 18 22 25 
+A#M9sus4 A# D# F A C   11 16 18 22 25 
+A#9sus2 A# C F G# C   11 13 18 21 25 
+A#9sus4 A# D# F G# C   11 16 18 21 25 
+A#M11 A# D F A C D#   11 15 18 22 25 28 
+A#m11 A# C# F G# C D#   11 14 18 21 25 28 
+A#11 A# D F G# C D#   11 15 18 21 25 28 
+A#aug11 A# D F# G# C D#   11 15 19 21 25 28 
+A#M11sus2 A# C F A C D#   11 13 18 22 25 28 
+A#11sus2 A# C F G# C D#   11 13 18 21 25 28 
 A#mM7 A# C# F A   11 14 18 22 
-A#mM7(9) A# C# F A C   11 14 18 22 1 
+A#mM7(9) A# C# F A C   11 14 18 22 25 
 A#M6 A# D F G   11 15 18 20 
 A#m6 A# C# F G   11 14 18 20 
-A#M6(9) A# D F G C   11 15 18 20 1 
-A#m6(9) A# C# F G C   11 14 18 20 1 
+A#M6(9) A# D F G C   11 15 18 20 25 
+A#m6(9) A# C# F G C   11 14 18 20 25 
 Bmaj B D# F#   12 16 19 
 Bmin B D F#   12 15 19 
 Baug B D# G   12 16 20 
@@ -421,27 +421,27 @@ BM7sus2 B C# F# A#   12 14 19 23
 BM7sus4 B E F# A#   12 17 19 23 
 B7sus2 B C# F# A   12 14 19 22 
 B7sus4 B E F# A   12 17 19 22 
-BM9 B D# F# A# C#   12 16 19 23 2 
-Bm9 B D F# A C#   12 15 19 22 2 
-B9 B D# F# A C#   12 16 19 22 2 
-Baug9 B D# G A C#   12 16 20 22 2 
-Bdim9 B D F G# C#   12 15 18 21 2 
-BM9sus2 B C# F# A# C#   12 14 19 23 2 
-BM9sus4 B E F# A# C#   12 17 19 23 2 
-B9sus2 B C# F# A C#   12 14 19 22 2 
-B9sus4 B E F# A C#   12 17 19 22 2 
-BM11 B D# F# A# C# E   12 16 19 23 2 5 
-Bm11 B D F# A C# E   12 15 19 22 2 5 
-B11 B D# F# A C# E   12 16 19 22 2 5 
-Baug11 B D# G A C# E   12 16 20 22 2 5 
-BM11sus2 B C# F# A# C# E   12 14 19 23 2 5 
-B11sus2 B C# F# A C# E   12 14 19 22 2 5 
+BM9 B D# F# A# C#   12 16 19 23 26 
+Bm9 B D F# A C#   12 15 19 22 26 
+B9 B D# F# A C#   12 16 19 22 26 
+Baug9 B D# G A C#   12 16 20 22 26 
+Bdim9 B D F G# C#   12 15 18 21 26 
+BM9sus2 B C# F# A# C#   12 14 19 23 26 
+BM9sus4 B E F# A# C#   12 17 19 23 26 
+B9sus2 B C# F# A C#   12 14 19 22 26 
+B9sus4 B E F# A C#   12 17 19 22 26 
+BM11 B D# F# A# C# E   12 16 19 23 26 29 
+Bm11 B D F# A C# E   12 15 19 22 26 29 
+B11 B D# F# A C# E   12 16 19 22 26 29 
+Baug11 B D# G A C# E   12 16 20 22 26 29 
+BM11sus2 B C# F# A# C# E   12 14 19 23 26 29 
+B11sus2 B C# F# A C# E   12 14 19 22 26 29 
 BmM7 B D F# A#   12 15 19 23 
-BmM7(9) B D F# A# C#   12 15 19 23 2 
+BmM7(9) B D F# A# C#   12 15 19 23 26 
 BM6 B D# F# G#   12 16 19 21 
 Bm6 B D F# G#   12 15 19 21 
-BM6(9) B D# F# G# C#   12 16 19 21 2 
-Bm6(9) B D F# G# C#   12 15 19 21 2 
+BM6(9) B D# F# G# C#   12 16 19 21 26 
+Bm6(9) B D F# G# C#   12 15 19 21 26 
 
 
 
