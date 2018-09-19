@@ -1,7 +1,7 @@
 '''
 NADINE
 Neural Array Dataset Interpreter for Note Extrapolates
-version 1.0
+version 2.0
 author: R2-B09, 2017
 
 Converts chord input file to data that can be interpreted by the ANN.
@@ -38,6 +38,12 @@ chordBoolsList = []
 chordMIDINumbersList = []
 
 def chordmap_2(input_file, WRITE_TO_OUTPUT_FILE):
+    '''
+    Makes the MIDI input representation of each chord, deleting those out of bounds (>127).
+    :param input_file:
+    :param WRITE_TO_OUTPUT_FILE:
+    :return:
+    '''
     # STEP 1: MAKE LIST OF CHORDS
     input_notes = open(INPUT_FILE)
     # chordsList, chordTypesList = [i.strip().split(' ') for i in input_notes]
@@ -84,14 +90,21 @@ def chordmap_2(input_file, WRITE_TO_OUTPUT_FILE):
                  # else:
                     temp.append((12 * oct_num) + (chordPossList[chord_iteration][note_num] - 1))
 
-            chordMIDINumbersList[chord_iteration].append(temp)
+            if no_greater_than_127(temp):
+                chordMIDINumbersList[chord_iteration].append(temp)
 
     print(chordMIDINumbersList)
     print(len(chordMIDINumbersList))
     print(str(count3DLayeredList2D(chordMIDINumbersList)))
 
-    # STEP 4: DELETE UNNEEDED (n > 127) CHORDS FROM DATABASE
+    if WRITE_TO_OUTPUT_FILE:
+        writeToChordsFile_2(chordsList, chordMIDINumbersList)
 
+def no_greater_than_127(l):
+    for n in l:
+        if n > 127:
+            return False
+    return True
 
 def count3DLayeredList2D(ll):
     k = 0
@@ -99,6 +112,7 @@ def count3DLayeredList2D(ll):
         for b in range(len(ll[a])):
             k += 1
     return k
+
 
 def chordmap(input_file, WRITE_TO_OUTPUT_FILE):
 
@@ -151,12 +165,31 @@ def chordmap(input_file, WRITE_TO_OUTPUT_FILE):
     if WRITE_TO_OUTPUT_FILE:
         writeToChordsFile(chordsList, chordBoolsList)
 
+def writeToChordsFile_2(CL, CPL, output_file="../input_dataset_binaries_2.txt"):
+    SPACE_LENGTH = 10
+    try:
+        with open(output_file, 'w') as chordsFile:
+            for chord_type in range(len(CPL)):
+                for chord in range(len(CPL[chord_type])): # len: 444
+                    # Write the chord name
+                    chordsFile.write(CL[chord_type][0] + ((SPACE_LENGTH - len(CL[chord_type][0])) * " "))
+                    # Write a vector of 128 0s and 1s, with 1s at the specified indeces in CPL
+                    for note in range(128):
+                        if note in CPL[chord_type][chord]:
+                            chordsFile.write("1 ")
+                        else:
+                            chordsFile.write("0 ")
+                    # Write a newline
+                    chordsFile.write("\n")
+    except Exception as e:
+        print(e)
 
-def writeToChordsFile(CL, CBL):
+
+def writeToChordsFile(CL, CBL, output_file="../input_dataset_binaries.txt"):
 
     SPACE_LENGTH = 10
     try:
-        with open("../input_dataset_binaries.txt", 'w') as chordsFile:
+        with open(output_file, 'w') as chordsFile:
             for i in range(len(CL)):
                 chordsFile.write(CL[i][0] + ((SPACE_LENGTH - len(CL[i][0])) * " "))
                 for j in range(24):

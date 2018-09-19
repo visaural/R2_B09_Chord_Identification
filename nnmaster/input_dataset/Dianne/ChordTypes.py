@@ -1,7 +1,7 @@
 '''
 DIANNE
 Dataset Initiation Algorithm for Nominal Note Extrapolation
-version 1.3
+version 2.0
 author: Joachim Navarro, 2017
 
 Zeroth-inversion-chord input dataset generator for use in neural networks.
