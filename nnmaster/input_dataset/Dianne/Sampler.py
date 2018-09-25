@@ -17,7 +17,6 @@ import chord
 import ChordTypes
 import random
 import numpy as NP
-
 listOfChordsOfChordTypes = []
 listOfChords = []
 sampleChords = []
@@ -42,8 +41,6 @@ def output_array_to_file(in_sample, out_sample, in_notsample, out_notsample):
     OS_FP = "../samples/database/NP_OUTPUT_NEURON_VALUES.npy"
     INS_FP = "../samples/database/NP_INPUT_NEURON_VALUES_NOT_SAMPLE.npy"
     ONS_FP = "../samples/database/NP_OUTPUT_NEURON_VALUES_NOT_SAMPLE.npy"
-
-
 
     NP.save(IS_FP, in_sample)
     NP.save(OS_FP, out_sample)

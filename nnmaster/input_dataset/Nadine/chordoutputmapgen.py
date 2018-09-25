@@ -62,6 +62,73 @@ CHORD_TYPES = [
 INPUT_FILE = "../input_dataset.txt"
 OUTPUT_FILE = "../input_dataset_output_binaries.txt"
 listOfOutputVectors = []
+SPACE_LENGTH = 10
+
+def chordmap_2_write(in_file = '../input_dataset_binaries_2.txt', out_file = "../input_dataset_output_binaries_2.txt"):
+    with open(in_file, 'r') as fi:
+        rawListChordFile = [i.strip().split() for i in fi]
+        print(rawListChordFile[0])
+
+        inputs = []
+        outputs = []
+
+        for c in range(len(rawListChordFile)):
+            inputs.append([])
+            for k in range(1, len(rawListChordFile[c])):
+                inputs[c].append(rawListChordFile[c][k])
+
+        print(inputs[0])
+
+        for d in range(len(rawListChordFile)):
+            outputs.append(list_1_at_index(chord_number(rawListChordFile[d][0])))
+
+        print(outputs[0])
+        print(len(outputs[0]))
+
+        # Write to file
+        with open(out_file, 'w') as fo:
+            for chord_instance in range(len(inputs)):
+                fo.write(rawListChordFile[chord_instance][0] + (" " * (SPACE_LENGTH - len(rawListChordFile[chord_instance][0]))))
+                for note_binary in range(len(outputs[chord_instance])):
+                    fo.write(str(outputs[chord_instance][note_binary]) + " ")
+                fo.write("\n")
+
+def list_1_at_index(i, size = 444):
+    '''
+    Returns a list with a 1 at index i.
+    :return:
+    '''
+    l = []
+    for k in range(size):
+        if k == i:
+            l.append(1)
+        else:
+            l.append(0)
+    return l
+
+def chord_number(chord_string):
+    '''
+    Returns the order of the chord in the chord list.
+    :param chord_string:
+    :return: The chord order, given by 37N + S
+    '''
+
+    if chord_string[:2] in ['C#', 'D#', 'F#', 'G#', 'A#']:
+        root_note_string = chord_string[:2]
+        chord_type_string = chord_string[2:]
+    else:
+        root_note_string = chord_string[:1]
+        chord_type_string = chord_string[1:]
+    #print(root_note_string)
+    #print(chord_type_string)
+    root_notes = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']
+    chord_types = ['maj', 'min', 'aug', 'dim', 'sus2', 'sus4', 'M7', 'm7', '7', 'aug7', 'dim7', 'o7', 'M7sus2', 'M7sus4', '7sus2', '7sus4', 'M9', 'm9', '9', 'aug9', 'dim9', 'M9sus2', 'M9sus4', '9sus2', '9sus4', 'M11', 'm11', '11', 'aug11', 'M11sus2', '11sus2', 'mM7', 'mM7(9)', 'M6', 'm6', 'M6(9)', 'm6(9)']
+
+    root_note_index = root_notes.index(root_note_string)
+    chord_type_index = chord_types.index(chord_type_string)
+
+    return ((37 * root_note_index) + chord_type_index)
+
 
 def chordmap(N, CT):
     i = 0
@@ -104,5 +171,6 @@ def writeToFile(LOOV):
 
 
 if __name__ == "__main__":
-    chordmap(NOTES, CHORD_TYPES)
-    writeToFile(listOfOutputVectors)
+    #chordmap(NOTES, CHORD_TYPES)
+    #writeToFile(listOfOutputVectors)
+    chordmap_2_write('../input_dataset_binaries_2.txt')

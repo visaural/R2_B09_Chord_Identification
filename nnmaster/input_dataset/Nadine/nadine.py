@@ -81,13 +81,6 @@ def chordmap_2(input_file, WRITE_TO_OUTPUT_FILE):
         for oct_num in range(11):                     # All possible MIDI octaves
             temp = []
             for note_num in range(len(chordPossList[chord_iteration])):     # for each number in [1, 5, 8] for example
-                 # if note_num is not 0:
-                 #     if chordPossList[chord_iteration][note_num - 1] > chordPossList[chord_iteration][note_num]:   # Chord note MIDI num entries must be in ascending order
-                 #         print("In " + str(chordPossList[chord_iteration]) + ", " + str(chordPossList[chord_iteration][note_num - 1]) + " is greater than " + str(chordPossList[chord_iteration][note_num]) + ", adding 23")
-                 #         temp.append((12 * oct_num) + (chordPossList[chord_iteration][note_num] + 23))
-                 #     else:
-                 #         temp.append((12 * oct_num) + (chordPossList[chord_iteration][note_num] - 1))
-                 # else:
                     temp.append((12 * oct_num) + (chordPossList[chord_iteration][note_num] - 1))
 
             if no_greater_than_127(temp):
