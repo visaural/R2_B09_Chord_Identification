@@ -1,4 +1,4 @@
-This is LuaTeX, Version 1.07.0 (MiKTeX 2.9.6800 64-bit)  (format=lualatex 2018.8.27)  25 SEP 2018 09:07
+This is LuaTeX, Version 1.07.0 (MiKTeX 2.9.6800 64-bit)  (format=lualatex 2018.8.27)  27 SEP 2018 14:25
  restricted system commands enabled.
 **R3A09_DOC_AN08_EQN.tex
 (./R3A09_DOC_AN08_EQN.tex
@@ -33,7 +33,7 @@ Inserting `luaotfload.aux.set_capheight' at position 3 in `luaotfload.patch_font
 '.
 Inserting `luaotfload.rewrite_fontname' at position 4 in `luaotfload.patch_font'
 .
-luaotfload | main : initialization completed in 0.740 seconds
+luaotfload | main : initialization completed in 0.655 seconds
 (S:/programs64/MiKTeX/tex/latex/base/letter.cls
 Document Class: letter 2014/09/29 v1.2z Standard LaTeX document class
 (S:/programs64/MiKTeX/tex/latex/base/size10.clo
@@ -640,19 +640,20 @@ Here is how much of LuaTeX's memory you used:
  484 words of node memory still in use:
    6 hlist, 2 vlist, 2 rule, 2 glue, 1 kern, 7 attribute, 56 glue_spec, 7 attrib
 ute_list, 1 write nodes
-   avail lists: 1:1,2:65,3:19,4:4,5:54,6:4,7:286,8:10,9:21,10:3,11:8
+   avail lists: 1:1,2:73,3:26,4:4,5:56,6:5,7:303,8:10,9:27,10:3,11:8
  15869 multiletter control sequences out of 65536+200000
  50 fonts using 7344911 bytes
  47i,4n,67p,353b,443s stack positions out of 5000i,500n,10000p,200000b,50000s
 <S:/programs64/MiKTeX/fonts/opentype/public/inconsolata/Inconsolatazi4-Regular.o
 tf><s:/programs64/miktex/fonts/opentype/public/lm/lmroman10-regular.otf><s:/prog
 rams64/miktex/fonts/opentype/public/lm/lmroman10-bold.otf><S:/programs64/MiKTeX/
-fonts/type1/public/amsfonts/cm/cmmi10.pfb><S:/programs64/MiKTeX/fonts/type1/publ
-ic/amsfonts/cm/cmmi7.pfb><S:/programs64/MiKTeX/fonts/type1/public/amsfonts/cm/cm
-r10.pfb><S:/programs64/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on R3A09_DOC_AN08_EQN.pdf (1 page, 44342 bytes).
+fonts/type1/public/amsfonts/cm/cmex10.pfb><S:/programs64/MiKTeX/fonts/type1/publ
+ic/amsfonts/cm/cmmi10.pfb><S:/programs64/MiKTeX/fonts/type1/public/amsfonts/cm/c
+mmi7.pfb><S:/programs64/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><S:/prog
+rams64/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
+Output written on R3A09_DOC_AN08_EQN.pdf (1 page, 53614 bytes).
 
-PDF statistics: 43 PDF objects out of 1000 (max. 8388607)
+PDF statistics: 47 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 131072)
  1 words of extra memory for PDF output out of 10000 (max. 100000000)
 
