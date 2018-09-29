@@ -16,6 +16,7 @@ import scale
 import chord
 import ChordTypes
 import random
+import math
 import numpy as NP
 listOfChordsOfChordTypes = []
 listOfChords = []
@@ -48,6 +49,77 @@ def output_array_to_file(in_sample, out_sample, in_notsample, out_notsample):
     NP.save(ONS_FP, out_notsample)
 
     print("numpy array save complete.")
+
+def sample_2(INS, OUTS, SAMPLE_SIZE = 4293):
+    with open(INS, 'r') as inputs_file, open(OUTS, 'r') as outputs_file:
+
+        list_of_chords = []
+        list_of_input_vectors = []
+        list_of_output_vectors = []
+        list_of_indeces = [i for i in range(SAMPLE_SIZE)]
+        list_of_indeces_not_in_the_sample = [i for i in range(SAMPLE_SIZE)]
+        list_of_sample_chords = []
+        list_of_sample_input_vectors = []
+        list_of_sample_output_vectors = []
+        list_of_not_sample_chords = []
+        list_of_not_sample_input_vectors = []
+        list_of_not_sample_output_vectors = []
+
+        # Fills the list of chords with the chords in the file
+        for line_in in inputs_file:
+            list_of_chords.append(line_in.strip().split()[0])
+            list_of_input_vectors.append(line_in.strip().split())
+
+        for line_out in outputs_file:
+            list_of_output_vectors.append(line_out.strip().split())
+
+        # Takes away the chord name from the lists of input and output vectors
+        for k in range(len(list_of_input_vectors)):
+            del list_of_input_vectors[k][0]
+            del list_of_output_vectors[k][0]
+
+        # Print checks for all lists before sampling
+        print("Chords:    ", str(len(list_of_chords)), str(len(list_of_chords[0])), list_of_chords)
+        print()
+        print("Inp-vects: ", str(len(list_of_input_vectors)), str(len(list_of_input_vectors[0])), list_of_input_vectors[0])
+        print("Out-vects: ", str(len(list_of_output_vectors)), str(len(list_of_output_vectors[0])), list_of_output_vectors[0])
+
+        # Take a sample. Returns indeces of sample.
+        sample = random.sample(list_of_indeces, math.ceil(0.6 * SAMPLE_SIZE))
+        print("Sampleinds:", str(len(sample)), sample)
+        print("NotSmpinds:", str(len(list_of_indeces_not_in_the_sample)), list_of_indeces_not_in_the_sample)
+
+        # Fill a list with the unchosen elements
+        for sampnum in sample:
+            list_of_indeces_not_in_the_sample.remove(sampnum)
+
+        print("Checking if any two elements in sample and list_of_indeces_not_in_the_sample are equal: " + str(anyTwoElementsEqual(list_of_indeces_not_in_the_sample, sample)))
+
+        print("=============================================================================================")
+
+        # Take the elements of chords, input vectors, and output vectors that are of the indeces in the sample
+        for sample_chord in sample:
+            list_of_sample_chords.append(list_of_chords[sample_chord])
+            list_of_sample_input_vectors.append(list_of_input_vectors[sample_chord])
+            list_of_sample_output_vectors.append(list_of_output_vectors[sample_chord])
+
+        # Take the elements of the three lists that are NOT in the sample
+        for not_sample_chord in list_of_indeces_not_in_the_sample:
+            list_of_not_sample_chords.append(list_of_chords[not_sample_chord])
+            list_of_not_sample_input_vectors.append(list_of_input_vectors[not_sample_chord])
+            list_of_not_sample_output_vectors.append(list_of_output_vectors[not_sample_chord])
+
+        # Print the samples
+        print("Samplechrd:", str(len(list_of_sample_chords)), list_of_sample_chords)
+        print("SmpVecsIn: ", str(len(list_of_sample_input_vectors)), list_of_sample_input_vectors[0])
+        print("SmpVecsOut:", str(len(list_of_sample_output_vectors)), list_of_sample_output_vectors[0])
+
+        print("=============================================================================================")
+
+        print("NotSmpchrd:", str(len(list_of_not_sample_chords)), list_of_not_sample_chords)
+        print("NotSmpVeIn:", str(len(list_of_not_sample_input_vectors)), list_of_not_sample_input_vectors[0])
+        print("NotSmpVeOu:", str(len(list_of_not_sample_output_vectors)), list_of_not_sample_output_vectors[0])
+
 
 
 def sample(SAMPLE_SIZE):
@@ -255,10 +327,11 @@ def printEqualElements(CBL, CL):
 
 # =============== MAIN THREAD ===============
 
-chordgen()
+#chordgen()
 
 if SAMPLE_SIZE_G < 12:
-    sample(SAMPLE_SIZE_G)
+    #sample(SAMPLE_SIZE_G)
     #writeSampleToFile(flatSampleChords, notInTheSample)
+    sample_2("../input_dataset_binaries_2.txt", "../input_dataset_output_binaries_2.txt")
 else:
     print("Sample invalid.")

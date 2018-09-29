@@ -27,14 +27,14 @@ def NNtest(INPUT, EXPECTED_OUTPUT, IDENTIFIER):
     '''
 
     # SAFETY NET: If nothing is running through realtime input then pass
-    if INPUT is None or len(INPUT) < 24:
+    if INPUT is None or len(INPUT) < 128:
         pass
     else:
         _IN_ = NP.array(INPUT)
         #print(str(NP.shape(_IN_)))
 
         tick = timeit.default_timer()
-        guess_np = IDENTIFIER.predict(_IN_.reshape(1, 24))
+        guess_np = IDENTIFIER.predict(_IN_.reshape(1, 128))
         tock = timeit.default_timer()
 
         guess = guess_np.flatten().tolist()
@@ -127,28 +127,36 @@ def realTimeTest(ID):
                 # Add note number to current note numbers in chord
                 currentNoteNumbersInChord.append(midi_events[0][0][1])
 
-                # Add note to binary list
-                root = currentNoteNumbersInChord[0] % 12
-                # print("root:", str(root))
-                # print("last element of currentNoteNumbersInChord:", currentNoteNumbersInChord[-1])
-                # print("current note added:", midi_events[0][0][1])
-                try:
-                    currentNotesInChord[(root) + (currentNoteNumbersInChord[-1] - currentNoteNumbersInChord[0])] = 1
-                except IndexError:
-                    currentNotesInChord[midi_events[0][0][1] % 12] = 1
+                # ============ LEGACY V1 CODE =========================================================================
+                # # Add note to binary list
+                # root = currentNoteNumbersInChord[0] % 12
+                # # print("root:", str(root))
+                # # print("last element of currentNoteNumbersInChord:", currentNoteNumbersInChord[-1])
+                # # print("current note added:", midi_events[0][0][1])
+                # try:
+                #     currentNotesInChord[(root) + (currentNoteNumbersInChord[-1] - currentNoteNumbersInChord[0])] = 1
+                # except IndexError:
+                #     currentNotesInChord[midi_events[0][0][1] % 12] = 1
+                #
+                # # Add note being played
+                # currentNoteNamesInChord.append(loc_note_MIDI.Loc_Note_MIDI.midiNumToNote(midi_events[0][0][1]))
+                #
+                # #print(currentNotesInChord)
+                # #print(currentNoteNumbersInChord)
+                # print(currentNoteNamesInChord)
+                # =====================================================================================================
 
-                # Add note being played
-                currentNoteNamesInChord.append(loc_note_MIDI.Loc_Note_MIDI.midiNumToNote(midi_events[0][0][1]))
+                print(currentNoteNumbersInChord)
+                currentNotesInChord = list_1_at_positions(currentNoteNumbersInChord)
 
-                #print(currentNotesInChord)
-                #print(currentNoteNumbersInChord)
-                print(currentNoteNamesInChord)
+                print(currentNotesInChord)
 
             # MIDI NOTE OFF
             elif 0x80 <= midi_events[0][0][0] <= 0x8F:
                 print("Purging variables.")
                 currentNotesInChord = []
-                for i in range(24): currentNotesInChord.append(0)
+                #for i in range(24): currentNotesInChord.append(0)
+                for i in range(128): currentNotesInChord.append(0)
                 currentNoteNumbersInChord = []
                 currentNoteNamesInChord = []
 
@@ -170,6 +178,26 @@ def realTimeTest(ID):
     pygame.midi.quit()
     pygame.quit()
     exit()
+
+
+def list_1_at_positions(position_list, size = 128):
+    '''
+    Returns a list with a 1 at the specified positions in position_list.
+    Position is taken to be index + 1.
+    :param position_list:
+    :param size:
+    :return:
+    '''
+    index_list = [i for i in position_list]
+    l = []
+    for k in range(size):
+        l.append(0)
+
+    for j in range(size):
+        if j in index_list:
+            l[j] = 1
+
+    return l
 
 
 if __name__ == "__main__":

@@ -11,7 +11,7 @@ import numpy as NP
 import h5py
 import soleil as sol
 
-FIRST_RUN = False
+FIRST_RUN = True
 
 INPUT_VALS = NP.load("input_dataset/samples/database/NP_INPUT_NEURON_VALUES.npy")
 OUTPUT_VALS = NP.load("input_dataset/samples/database/NP_OUTPUT_NEURON_VALUES.npy")
@@ -71,10 +71,10 @@ if __name__ == "__main__":
 
     if FIRST_RUN:
         chord_identifier = Sequential()
-        chord_identifier.add(Dense(14, input_shape = (24,), activation = 'sigmoid'))
-        chord_identifier.add(Dense(2))
-        chord_identifier.add(Dense(2))
-        chord_identifier.add(Dense(14, activation = 'softmax'))
+        chord_identifier.add(Dense(444, input_shape = (128,), activation = 'sigmoid'))
+        chord_identifier.add(Dense(256))
+        chord_identifier.add(Dense(256))
+        chord_identifier.add(Dense(444, activation = 'softmax'))
 
         chord_identifier.compile(optimizer = 'sgd', loss = 'mean_squared_error', metrics = ['mse', 'accuracy'])
         checkpointer = checkpoint()

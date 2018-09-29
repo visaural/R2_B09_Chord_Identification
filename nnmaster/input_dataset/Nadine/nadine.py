@@ -21,9 +21,9 @@ Main file.
 
 import sys
 import loc_note_MIDI
-#import pygame
-#from pygame import midi
-#from pygame.locals import *
+import pygame
+from pygame import midi
+from pygame.locals import *
 
 sys.path.insert(0, "../Dianne/")
 
@@ -218,9 +218,9 @@ def printEqualElements(CBL, CL):
 
         print(len(ee) // 2)
 
-def realTimeMIDIChords():
+def realTimeMIDIChords(ID = None):
     '''
-    Displays the mappings of the notes currently being played on MIDI.
+    Displays the mappings of the notes currently being played on MIDI and runs them through the NN,
     (kushalbhabra, 2013; Tang, n.d.)
     '''
     # display a list of MIDI devices connected to the computer
@@ -288,36 +288,44 @@ def realTimeMIDIChords():
             # MIDI NOTE ON
             if 0x90 <= midi_events[0][0][0] <= 0x9F:
                 mod = 1
-                if len(currentNotesInChord) != 24:
-                    print("Error - length of array is not 24! Emergency stop.")
-                    realtime = False
-                    break
+                # if len(currentNotesInChord) != 24:
+                #     print("Error - length of array is not 24! Emergency stop.")
+                #     realtime = False
+                #     break
 
                 # Add note number to current note numbers in chord
                 currentNoteNumbersInChord.append(midi_events[0][0][1])
 
-                # Add note to binary list
-                root = currentNoteNumbersInChord[0] % 12
-                # print("root:", str(root))
-                # print("last element of currentNoteNumbersInChord:", currentNoteNumbersInChord[-1])
-                # print("current note added:", midi_events[0][0][1])
-                try:
-                    currentNotesInChord[(root) + (currentNoteNumbersInChord[-1] - currentNoteNumbersInChord[0])] = 1
-                except IndexError:
-                    currentNotesInChord[midi_events[0][0][1] % 12] = 1
+                # ============ LEGACY V1 CODE =========================================================================
+                # # Add note to binary list
+                # root = currentNoteNumbersInChord[0] % 12
+                # # print("root:", str(root))
+                # # print("last element of currentNoteNumbersInChord:", currentNoteNumbersInChord[-1])
+                # # print("current note added:", midi_events[0][0][1])
+                # try:
+                #     currentNotesInChord[(root) + (currentNoteNumbersInChord[-1] - currentNoteNumbersInChord[0])] = 1
+                # except IndexError:
+                #     currentNotesInChord[midi_events[0][0][1] % 12] = 1
+                #
+                # # Add note being played
+                # currentNoteNamesInChord.append(loc_note_MIDI.Loc_Note_MIDI.midiNumToNote(midi_events[0][0][1]))
+                #
+                # #print(currentNotesInChord)
+                # #print(currentNoteNumbersInChord)
+                # print(currentNoteNamesInChord)
+                # =====================================================================================================
 
-                # Add note being played
-                currentNoteNamesInChord.append(loc_note_MIDI.Loc_Note_MIDI.midiNumToNote(midi_events[0][0][1]))
+                print(currentNoteNumbersInChord)
+                currentNotesInChord = list_1_at_positions(currentNoteNumbersInChord)
 
                 print(currentNotesInChord)
-                print(currentNoteNumbersInChord)
-                print(currentNoteNamesInChord)
 
             # MIDI NOTE OFF
             elif 0x80 <= midi_events[0][0][0] <= 0x8F:
                 print("Purging variables.")
                 currentNotesInChord = []
-                for i in range(24): currentNotesInChord.append(0)
+                #for i in range(24): currentNotesInChord.append(0)
+                for i in range(128): currentNotesInChord.append(0)
                 currentNoteNumbersInChord = []
                 currentNoteNamesInChord = []
 
@@ -330,11 +338,35 @@ def realTimeMIDIChords():
                 print("Something else was tinkered.")
                 print(midi_events[0][0][0])
 
+            # Execute NN testing only if there are more than 2 notes playing
+            #if currentNotesInChord.count(1) > 2:
+            #    NNtest(currentNotesInChord, [], ID)
+
     print("Exiting.")
     midi_in.close()
     pygame.midi.quit()
     pygame.quit()
     exit()
+
+
+def list_1_at_positions(position_list, size = 128):
+    '''
+    Returns a list with a 1 at the specified positions in position_list.
+    Position is taken to be index + 1.
+    :param position_list:
+    :param size:
+    :return:
+    '''
+    index_list = [i for i in position_list]
+    l = []
+    for k in range(size):
+        l.append(0)
+
+    for j in range(size):
+        if j in index_list:
+            l[j] = 1
+
+    return l
 
 if __name__ == "__main__":
 
