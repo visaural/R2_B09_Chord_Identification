@@ -14,6 +14,16 @@ import numpy as NP
 UPPER_BOUNDS = [0.08, 0.16, 0.24, 0.32, 0.40, 0.48, 0.56, 0.64, 0.72, 0.80, 0.88, 0.96]
 NOTES        = ['C',  'C#', 'D',  'D#', 'E',  'F',  'F#', 'G',  'G#', 'A',  'A#', 'B']
 
+def determineChordName_2(outputs, inputs, verbose = False) -> str:
+
+    # Determine the index where the max value is
+    max_index = max(outputs).index()
+
+    # Print the index
+
+
+
+
 def softmax(x, verbose=False):
     x_exp = [math.exp(i) for i in x]
     #print([round(i, 2) for i in x_exp])

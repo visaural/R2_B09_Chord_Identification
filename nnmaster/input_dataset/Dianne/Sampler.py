@@ -1,7 +1,7 @@
 '''
 DIANNE
 Dataset Initiation Algorithm for Nominal Note Extrapolation
-version 1.3
+version 2.0
 author: Joachim Navarro, 2017
 
 Zeroth-inversion-chord input dataset generator for use in neural networks.
@@ -28,14 +28,20 @@ SAMPLE_SIZE_G = 7
 INPUTS = "../input_dataset_binaries.txt"
 OUTPUTS = "../input_dataset_output_binaries.txt"
 SAMPLE_FILE = "../samples/sample_one.txt"
+CHORDS_FILE = "../chord_master_list.txt"
 
 
-def chordgen():
+def chordgen(write = False):
     for rootNote in scale.TWELVE_NOTE_SCALE:
         for chordType in scale.CHORD_TYPES:
             listOfChords.append(chord.Chord(rootNote, chordType))
 
     print(listOfChords)
+
+    if write:
+        with open(CHORDS_FILE, 'w') as cf:
+            for c in listOfChords:
+                cf.write(str(c) + "\n")
 
 def output_array_to_file(in_sample, out_sample, in_notsample, out_notsample):
     IS_FP = "../samples/database/NP_INPUT_NEURON_VALUES.npy"
@@ -119,6 +125,33 @@ def sample_2(INS, OUTS, SAMPLE_SIZE = 4293):
         print("NotSmpchrd:", str(len(list_of_not_sample_chords)), list_of_not_sample_chords)
         print("NotSmpVeIn:", str(len(list_of_not_sample_input_vectors)), list_of_not_sample_input_vectors[0])
         print("NotSmpVeOu:", str(len(list_of_not_sample_output_vectors)), list_of_not_sample_output_vectors[0])
+
+        NP_INPUT_NEURON_VALUES = NP.asarray(list_of_sample_input_vectors)
+        NP_OUTPUT_NEURON_VALUES = NP.asarray(list_of_sample_output_vectors)
+        NP_INPUT_NEURON_VALUES_NOT_SAMPLE = NP.asarray(list_of_not_sample_input_vectors)
+        NP_OUTPUT_NEURON_VALUES_NOT_SAMPLE = NP.asarray(list_of_not_sample_output_vectors)
+
+        print("-------------------------------------")
+        print("NUMPY ARRAYS")
+        print("-------------------------------------")
+        print()
+        print("NP_INPUT_NEURON_VALUES")
+        print(NP_INPUT_NEURON_VALUES)
+        print()
+        print("NP_OUTPUT_NEURON_VALUES")
+        print(NP_OUTPUT_NEURON_VALUES)
+        print()
+        print("NP_INPUT_NEURON_VALUES_NOT_SAMPLE")
+        print(NP_INPUT_NEURON_VALUES_NOT_SAMPLE)
+        print()
+        print("NP_OUTPUT_NEURON_VALUES_NOT_SAMPLE")
+        print(NP_OUTPUT_NEURON_VALUES_NOT_SAMPLE)
+        print("-------------------------------------")
+
+        # Outputs sample arrays to h5
+        output_array_to_file(NP_INPUT_NEURON_VALUES.astype(float), NP_OUTPUT_NEURON_VALUES.astype(float),
+                             NP_INPUT_NEURON_VALUES_NOT_SAMPLE.astype(float),
+                             NP_OUTPUT_NEURON_VALUES_NOT_SAMPLE.astype(float))
 
 
 
@@ -327,11 +360,11 @@ def printEqualElements(CBL, CL):
 
 # =============== MAIN THREAD ===============
 
-#chordgen()
+chordgen(True)
 
-if SAMPLE_SIZE_G < 12:
-    #sample(SAMPLE_SIZE_G)
-    #writeSampleToFile(flatSampleChords, notInTheSample)
-    sample_2("../input_dataset_binaries_2.txt", "../input_dataset_output_binaries_2.txt")
-else:
-    print("Sample invalid.")
+# if SAMPLE_SIZE_G < 12:
+#     #sample(SAMPLE_SIZE_G)
+#     #writeSampleToFile(flatSampleChords, notInTheSample)
+#     sample_2("../input_dataset_binaries_2.txt", "../input_dataset_output_binaries_2.txt")
+# else:
+#     print("Sample invalid.")

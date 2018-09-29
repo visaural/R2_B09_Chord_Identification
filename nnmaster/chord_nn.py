@@ -1,6 +1,6 @@
 '''
 chord_nn.py
-version 0.1
+version 2.0
 author: R2_B09
 '''
 
@@ -11,7 +11,7 @@ import numpy as NP
 import h5py
 import soleil as sol
 
-FIRST_RUN = True
+FIRST_RUN = False
 
 INPUT_VALS = NP.load("input_dataset/samples/database/NP_INPUT_NEURON_VALUES.npy")
 OUTPUT_VALS = NP.load("input_dataset/samples/database/NP_OUTPUT_NEURON_VALUES.npy")
@@ -60,7 +60,14 @@ def checkpoint(verb = 1):
 
 
 if __name__ == "__main__":
-
+    # yes_choices = ['y', 'Y']
+    #
+    # c = input("Split NN dataset into training and testing? [y/n] ")
+    # if c in yes_choices:
+    #     d = input("Are you sure? This operation, if applied more than once, can damage the dataset permanently. [y/n]")
+    #     if d in yes_choices:
+    #         splitter()
+    #else:
     VALIDATION_INPUT = NP.load("input_dataset/samples/database/NP_INPUT_VALIDATION.npy")
     VALIDATION_OUTPUT = NP.load("input_dataset/samples/database/NP_OUTPUT_VALIDATION.npy")
 

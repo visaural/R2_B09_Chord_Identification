@@ -42,7 +42,7 @@ def NNtest(INPUT, EXPECTED_OUTPUT, IDENTIFIER):
 
         print("===============================")
         outertick = timeit.default_timer()
-        print("Guessed chord: " + moi.determineChordName(guess, INPUT))
+        print("Guessed chord: " + moi.determineChordName_2(guess, INPUT))
         outertock = timeit.default_timer()
         print("Time elapsed: " + str(tock - tick))
         print("Time elapsed, including display chord: " + str(tock - tick + outertock - outertick))
