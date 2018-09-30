@@ -10,19 +10,30 @@ for every combination of neural network outputs.
 
 import math
 import numpy as NP
+import linecache
 
 UPPER_BOUNDS = [0.08, 0.16, 0.24, 0.32, 0.40, 0.48, 0.56, 0.64, 0.72, 0.80, 0.88, 0.96]
 NOTES        = ['C',  'C#', 'D',  'D#', 'E',  'F',  'F#', 'G',  'G#', 'A',  'A#', 'B']
+CHORD_LIST   = "samples/chord_master_list.txt"
 
-def determineChordName_2(outputs, inputs, verbose = False) -> str:
+def determineChordName_2(outputs, inputs) -> str:
 
     # Determine the index where the max value is
     max_index = max(outputs).index()
 
-    # Print the index
+    # Print the output of the neural network
+    print("NN output: " + outputs)
+
+    # Print the index and the guessed chord
+    return get_line_at_index_from_file(CHORD_LIST, max_index)
 
 
-
+def get_line_at_index_from_file(f, i):
+    '''
+    Returns the line at index i from file f.
+    :return: str
+    '''
+    return linecache.getline(f, i + 1)
 
 def softmax(x, verbose=False):
     x_exp = [math.exp(i) for i in x]

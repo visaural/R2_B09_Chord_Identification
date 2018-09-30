@@ -98,8 +98,10 @@ if __name__ == "__main__":
         chord_identifier = keras.models.load_model("models/chord_identifier.h5")
         chord_identifier.compile(optimizer='sgd', loss='mean_squared_error', metrics=['mse', 'accuracy'])
         checkpointer = checkpoint()
+        callbacks_list = [checkpointer]
 
         h = chord_identifier.fit(INPUT_VALS, OUTPUT_VALS, epochs=1000, verbose=1, validation_data=(VALIDATION_INPUT, VALIDATION_OUTPUT), callbacks=callbacks_list)
         save_history(h)
 
         sol.graph_from_History(things_to_graph=['acc', 'val_acc'], MHObject=h, title="Model accuracy", ylabel="Accuracy", xlabel="Epoch", legendlist=['train', 'test'], legendloc = 'upper left')
+        sol.graph_from_History(things_to_graph=['loss', 'val_loss'], MHObject=h, title="Model losses", ylabel="Loss", xlabel="Epoch", legendlist=['train', 'test'], legendloc='upper left')
