@@ -13,8 +13,8 @@ import soleil as sol
 
 FIRST_RUN = False
 
-INPUT_VALS = NP.load("input_dataset/samples/database/NP_INPUT_NEURON_VALUES.npy")
-OUTPUT_VALS = NP.load("input_dataset/samples/database/NP_OUTPUT_NEURON_VALUES.npy")
+#INPUT_VALS = NP.load("input_dataset/samples/database/NP_INPUT_NEURON_VALUES.npy")
+#OUTPUT_VALS = NP.load("input_dataset/samples/database/NP_OUTPUT_NEURON_VALUES.npy")
 VALIDATION_INPUT_VALS = NP.load("input_dataset/samples/database/NP_INPUT_NEURON_VALUES_NOT_SAMPLE.npy")
 VALIDATION_OUTPUT_VALS = NP.load("input_dataset/samples/database/NP_OUTPUT_NEURON_VALUES_NOT_SAMPLE.npy")
 
@@ -49,6 +49,9 @@ def save_history(mh):
     with open("models/history/mse.txt", MODE) as ModelHistoryMSE:
          ModelHistoryMSE.write(str(mh.history['mean_squared_error']))
 
+    with open("models/history/train_acc.txt", MODE) as ModelHistoryTA:
+         ModelHistoryTA.write(str(mh.history['acc']))
+
     with open("models/history/val_acc.txt", MODE) as ModelHistoryVA:
         ModelHistoryVA.write(str(mh.history['val_acc']))
 
@@ -68,6 +71,8 @@ if __name__ == "__main__":
     #     if d in yes_choices:
     #         splitter()
     #else:
+    INPUT_VALS = NP.load("input_dataset/samples/database/NP_INPUT_NEURON_VALUES.npy")
+    OUTPUT_VALS = NP.load("input_dataset/samples/database/NP_OUTPUT_NEURON_VALUES.npy")
     VALIDATION_INPUT = NP.load("input_dataset/samples/database/NP_INPUT_VALIDATION.npy")
     VALIDATION_OUTPUT = NP.load("input_dataset/samples/database/NP_OUTPUT_VALIDATION.npy")
 
@@ -78,16 +83,16 @@ if __name__ == "__main__":
 
     if FIRST_RUN:
         chord_identifier = Sequential()
-        chord_identifier.add(Dense(444, input_shape = (128,), activation = 'sigmoid'))
+        chord_identifier.add(Dense(444, input_shape = (128,), activation = 'relu', kernel_initializer='orthogonal'))
         chord_identifier.add(Dense(256))
         chord_identifier.add(Dense(256))
-        chord_identifier.add(Dense(444, activation = 'softmax'))
+        chord_identifier.add(Dense(444, activation = 'relu'))
 
         chord_identifier.compile(optimizer = 'sgd', loss = 'mean_squared_error', metrics = ['mse', 'accuracy'])
         checkpointer = checkpoint()
         callbacks_list = [checkpointer]
 
-        h = chord_identifier.fit(INPUT_VALS, OUTPUT_VALS, epochs = 800, verbose = 1, validation_data = (VALIDATION_INPUT, VALIDATION_OUTPUT), callbacks=callbacks_list)
+        h = chord_identifier.fit(INPUT_VALS, OUTPUT_VALS, epochs = 2800, verbose = 1, validation_data = (VALIDATION_INPUT, VALIDATION_OUTPUT), callbacks=callbacks_list)
         save_history(h)
 
         sol.graph_from_History(things_to_graph=['acc', 'val_acc'], MHObject=h, title="Model accuracy", ylabel="Accuracy", xlabel="Epoch", legendlist=['train', 'test'], legendloc = 'upper left')
@@ -100,7 +105,7 @@ if __name__ == "__main__":
         checkpointer = checkpoint()
         callbacks_list = [checkpointer]
 
-        h = chord_identifier.fit(INPUT_VALS, OUTPUT_VALS, epochs=1000, verbose=1, validation_data=(VALIDATION_INPUT, VALIDATION_OUTPUT), callbacks=callbacks_list)
+        h = chord_identifier.fit(INPUT_VALS, OUTPUT_VALS, epochs=1200, verbose=1, validation_data=(VALIDATION_INPUT, VALIDATION_OUTPUT), callbacks=callbacks_list)
         save_history(h)
 
         sol.graph_from_History(things_to_graph=['acc', 'val_acc'], MHObject=h, title="Model accuracy", ylabel="Accuracy", xlabel="Epoch", legendlist=['train', 'test'], legendloc = 'upper left')
