@@ -119,10 +119,10 @@ def realTimeTest(ID):
             # MIDI NOTE ON
             if 0x90 <= midi_events[0][0][0] <= 0x9F:
                 mod = 1
-                if len(currentNotesInChord) != 24:
-                    print("Error - length of array is not 24! Emergency stop.")
-                    realtime = False
-                    break
+                # if len(currentNotesInChord) != 24:
+                #     print("Error - length of array is not 24! Emergency stop.")
+                #     realtime = False
+                #     break
 
                 # Add note number to current note numbers in chord
                 currentNoteNumbersInChord.append(midi_events[0][0][1])

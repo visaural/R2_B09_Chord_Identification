@@ -14,18 +14,19 @@ import linecache
 
 UPPER_BOUNDS = [0.08, 0.16, 0.24, 0.32, 0.40, 0.48, 0.56, 0.64, 0.72, 0.80, 0.88, 0.96]
 NOTES        = ['C',  'C#', 'D',  'D#', 'E',  'F',  'F#', 'G',  'G#', 'A',  'A#', 'B']
-CHORD_LIST   = "samples/chord_master_list.txt"
+CHORD_LIST   = "input_dataset/chord_master_list.txt"
 
 def determineChordName_2(outputs, inputs) -> str:
 
     # Determine the index where the max value is
-    max_index = max(outputs).index()
+    max_index = NP.argmax(outputs)
+    print("Max index: " + str(max_index) + " (" + str(outputs[max_index]) + ")")
 
     # Print the output of the neural network
-    print("NN output: " + outputs)
+    print("NN output: " + str(outputs))
 
     # Print the index and the guessed chord
-    return get_line_at_index_from_file(CHORD_LIST, max_index)
+    return linecache.getline(CHORD_LIST, max_index + 1)
 
 
 def get_line_at_index_from_file(f, i):
