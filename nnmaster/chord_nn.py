@@ -105,7 +105,7 @@ if __name__ == "__main__":
         checkpointer = checkpoint()
         callbacks_list = [checkpointer]
 
-        h = chord_identifier.fit(INPUT_VALS, OUTPUT_VALS, epochs=1200, verbose=1, validation_data=(VALIDATION_INPUT, VALIDATION_OUTPUT), callbacks=callbacks_list)
+        h = chord_identifier.fit(INPUT_VALS, OUTPUT_VALS, epochs=10000, verbose=1, validation_data=(VALIDATION_INPUT, VALIDATION_OUTPUT), callbacks=callbacks_list)
         save_history(h)
 
         sol.graph_from_History(things_to_graph=['acc', 'val_acc'], MHObject=h, title="Model accuracy", ylabel="Accuracy", xlabel="Epoch", legendlist=['train', 'test'], legendloc = 'upper left')
