@@ -1,0 +1,23 @@
+\documentclass{article}
+\usepackage{amsmath}
+
+\begin{document}
+	
+	\begin{center}
+		\textbf{R3-A09 Revised Training Plan}\\
+		
+		Make the checkpointing fix, then do the number of training epochs as outlined in the calculation below. Let $K = 1\,000$ and $M = 1\,000\,000$.\\
+		
+		Using a linearly proportional fit we can estimate the number of epochs needed to train the NN to 100\% accuracy:\\
+		\begin{align*}
+			\frac{5.97\%}{10K \, \text{epochs}} &= \frac{100\%}{t \, \text{epochs}}\\
+			5.97t &= 100(10K) \, \text{epochs}\\
+			5.97t &= 1M \, \text{epochs}\\
+			t &= \frac{1M \, \text{epochs}}{5.97}\\
+			t &\approx \boxed{167\,505 \, \text{epochs}}
+		\end{align*}
+		
+		
+	\end{center}
+
+\end{document}
