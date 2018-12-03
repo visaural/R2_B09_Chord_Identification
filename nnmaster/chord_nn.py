@@ -59,7 +59,7 @@ def save_history(mh):
         ModelHistoryVL.write(str(mh.history['val_loss']))
 
 def checkpoint(verb = 1):
-    return keras.callbacks.ModelCheckpoint("models/chord_identifier.h5", verbose=verb, monitor='train_acc', save_best_only=True, mode='max')
+    return keras.callbacks.ModelCheckpoint("models/chord_identifier.h5", verbose=verb, monitor='val_loss', save_best_only=True, mode='min')
 
 
 if __name__ == "__main__":
@@ -102,10 +102,10 @@ if __name__ == "__main__":
         # recall and train
         chord_identifier = keras.models.load_model("models/chord_identifier.h5")
         chord_identifier.compile(optimizer='sgd', loss='mean_squared_error', metrics=['mse', 'accuracy'])
-        checkpointer = checkpoint()
-        callbacks_list = [checkpointer]
+        #checkpointer = checkpoint()
+        callbacks_list = [checkpoint()]
 
-        h = chord_identifier.fit(INPUT_VALS, OUTPUT_VALS, epochs = 10000, verbose=1, validation_data=(VALIDATION_INPUT, VALIDATION_OUTPUT), callbacks=callbacks_list)
+        h = chord_identifier.fit(INPUT_VALS, OUTPUT_VALS, epochs = 20000, verbose=1, validation_data=(VALIDATION_INPUT, VALIDATION_OUTPUT), callbacks=callbacks_list)
         save_history(h)
 
         sol.graph_from_History(things_to_graph=['acc', 'val_acc'], MHObject=h, title="Model accuracy", ylabel="Accuracy", xlabel="Epoch", legendlist=['train', 'test'], legendloc = 'upper left')
