@@ -59,7 +59,7 @@ def save_history(mh):
         ModelHistoryVL.write(str(mh.history['val_loss']))
 
 def checkpoint(verb = 1):
-    return keras.callbacks.ModelCheckpoint("models/chord_identifier.h5", verbose=verb, monitor='val_acc', save_best_only=True, mode='max')
+    return keras.callbacks.ModelCheckpoint("models/chord_identifier.h5", verbose=verb, monitor='train_acc', save_best_only=True, mode='max')
 
 
 if __name__ == "__main__":
